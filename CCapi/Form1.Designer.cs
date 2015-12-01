@@ -23,430 +23,463 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.button4 = new System.Windows.Forms.Button();
-			this.textBox24 = new System.Windows.Forms.TextBox();
-			this.textBox23 = new System.Windows.Forms.TextBox();
-			this.textBox21 = new System.Windows.Forms.TextBox();
-			this.textBox19 = new System.Windows.Forms.TextBox();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.button3 = new System.Windows.Forms.Button();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.textBox17 = new System.Windows.Forms.TextBox();
-			this.textBox15 = new System.Windows.Forms.TextBox();
-			this.textBox13 = new System.Windows.Forms.TextBox();
-			this.textBox9 = new System.Windows.Forms.TextBox();
-			this.textBox7 = new System.Windows.Forms.TextBox();
-			this.button2 = new System.Windows.Forms.Button();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.label11 = new System.Windows.Forms.Label();
-			this.tabControl1.SuspendLayout();
-			this.tabPage1.SuspendLayout();
-			this.panel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			this.tabPage2.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// tabControl1
-			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Location = new System.Drawing.Point(12, 12);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(576, 270);
-			this.tabControl1.TabIndex = 1;
-			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_Change);
-			// 
-			// tabPage1
-			// 
-			this.tabPage1.Controls.Add(this.label11);
-			this.tabPage1.Controls.Add(this.label10);
-			this.tabPage1.Controls.Add(this.label9);
-			this.tabPage1.Controls.Add(this.label8);
-			this.tabPage1.Controls.Add(this.button4);
-			this.tabPage1.Controls.Add(this.textBox24);
-			this.tabPage1.Controls.Add(this.textBox23);
-			this.tabPage1.Controls.Add(this.textBox21);
-			this.tabPage1.Controls.Add(this.textBox19);
-			this.tabPage1.Controls.Add(this.panel1);
-			this.tabPage1.Controls.Add(this.button1);
-			this.tabPage1.Controls.Add(this.textBox1);
-			this.tabPage1.Controls.Add(this.pictureBox1);
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(568, 244);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Players";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// button4
-			// 
-			this.button4.Location = new System.Drawing.Point(399, 7);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(29, 23);
-			this.button4.TabIndex = 14;
-			this.button4.Text = "ID";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.button4_Click);
-			// 
-			// textBox24
-			// 
-			this.textBox24.Location = new System.Drawing.Point(234, 86);
-			this.textBox24.Name = "textBox24";
-			this.textBox24.ReadOnly = true;
-			this.textBox24.Size = new System.Drawing.Size(134, 20);
-			this.textBox24.TabIndex = 10;
-			// 
-			// textBox23
-			// 
-			this.textBox23.Location = new System.Drawing.Point(234, 190);
-			this.textBox23.Multiline = true;
-			this.textBox23.Name = "textBox23";
-			this.textBox23.ReadOnly = true;
-			this.textBox23.Size = new System.Drawing.Size(328, 45);
-			this.textBox23.TabIndex = 9;
-			// 
-			// textBox21
-			// 
-			this.textBox21.Location = new System.Drawing.Point(234, 138);
-			this.textBox21.Name = "textBox21";
-			this.textBox21.ReadOnly = true;
-			this.textBox21.Size = new System.Drawing.Size(328, 20);
-			this.textBox21.TabIndex = 7;
-			// 
-			// textBox19
-			// 
-			this.textBox19.Location = new System.Drawing.Point(374, 86);
-			this.textBox19.Name = "textBox19";
-			this.textBox19.ReadOnly = true;
-			this.textBox19.Size = new System.Drawing.Size(54, 20);
-			this.textBox19.TabIndex = 5;
-			// 
-			// panel1
-			// 
-			this.panel1.Controls.Add(this.label7);
-			this.panel1.Controls.Add(this.label6);
-			this.panel1.Controls.Add(this.button3);
-			this.panel1.Controls.Add(this.textBox4);
-			this.panel1.Controls.Add(this.textBox2);
-			this.panel1.Location = new System.Drawing.Point(6, 6);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(222, 232);
-			this.panel1.TabIndex = 3;
-			// 
-			// button3
-			// 
-			this.button3.Location = new System.Drawing.Point(144, 1);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(75, 23);
-			this.button3.TabIndex = 4;
-			this.button3.Text = "Refresh";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
-			// 
-			// textBox4
-			// 
-			this.textBox4.Location = new System.Drawing.Point(4, 29);
-			this.textBox4.Multiline = true;
-			this.textBox4.Name = "textBox4";
-			this.textBox4.ReadOnly = true;
-			this.textBox4.Size = new System.Drawing.Size(215, 174);
-			this.textBox4.TabIndex = 2;
-			// 
-			// textBox2
-			// 
-			this.textBox2.Location = new System.Drawing.Point(160, 209);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.ReadOnly = true;
-			this.textBox2.Size = new System.Drawing.Size(59, 20);
-			this.textBox2.TabIndex = 0;
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(340, 7);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(53, 23);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "Lookup Player/ID";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(234, 8);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 20);
-			this.textBox1.TabIndex = 1;
-			this.textBox1.Text = "Player Name/ID";
-			this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_Key);
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Location = new System.Drawing.Point(434, 6);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(128, 128);
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
-			// 
-			// tabPage2
-			// 
-			this.tabPage2.Controls.Add(this.label5);
-			this.tabPage2.Controls.Add(this.label4);
-			this.tabPage2.Controls.Add(this.label3);
-			this.tabPage2.Controls.Add(this.label2);
-			this.tabPage2.Controls.Add(this.label1);
-			this.tabPage2.Controls.Add(this.textBox17);
-			this.tabPage2.Controls.Add(this.textBox15);
-			this.tabPage2.Controls.Add(this.textBox13);
-			this.tabPage2.Controls.Add(this.textBox9);
-			this.tabPage2.Controls.Add(this.textBox7);
-			this.tabPage2.Controls.Add(this.button2);
-			this.tabPage2.Controls.Add(this.comboBox1);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(568, 244);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Servers";
-			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// textBox17
-			// 
-			this.textBox17.Location = new System.Drawing.Point(485, 59);
-			this.textBox17.Name = "textBox17";
-			this.textBox17.ReadOnly = true;
-			this.textBox17.Size = new System.Drawing.Size(77, 20);
-			this.textBox17.TabIndex = 13;
-			// 
-			// textBox15
-			// 
-			this.textBox15.Location = new System.Drawing.Point(6, 163);
-			this.textBox15.Name = "textBox15";
-			this.textBox15.ReadOnly = true;
-			this.textBox15.Size = new System.Drawing.Size(556, 20);
-			this.textBox15.TabIndex = 11;
-			// 
-			// textBox13
-			// 
-			this.textBox13.Location = new System.Drawing.Point(6, 111);
-			this.textBox13.Name = "textBox13";
-			this.textBox13.ReadOnly = true;
-			this.textBox13.Size = new System.Drawing.Size(556, 20);
-			this.textBox13.TabIndex = 9;
-			// 
-			// textBox9
-			// 
-			this.textBox9.Location = new System.Drawing.Point(370, 59);
-			this.textBox9.Name = "textBox9";
-			this.textBox9.ReadOnly = true;
-			this.textBox9.Size = new System.Drawing.Size(68, 20);
-			this.textBox9.TabIndex = 5;
-			this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// textBox7
-			// 
-			this.textBox7.Location = new System.Drawing.Point(6, 59);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.ReadOnly = true;
-			this.textBox7.Size = new System.Drawing.Size(358, 20);
-			this.textBox7.TabIndex = 3;
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(487, 6);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 1;
-			this.button2.Text = "Refresh";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// comboBox1
-			// 
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(6, 6);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(475, 21);
-			this.comboBox1.TabIndex = 0;
-			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(7, 40);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(35, 13);
-			this.label1.TabIndex = 15;
-			this.label1.Text = "Name";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(7, 92);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(40, 13);
-			this.label2.TabIndex = 16;
-			this.label2.Text = "Uptime";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(7, 144);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(49, 13);
-			this.label3.TabIndex = 17;
-			this.label3.Text = "Software";
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(367, 40);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(67, 13);
-			this.label4.TabIndex = 18;
-			this.label4.Text = "Player Count";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(444, 62);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(34, 13);
-			this.label5.TabIndex = 19;
-			this.label5.Text = "out of";
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(1, 13);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(98, 13);
-			this.label6.TabIndex = 5;
-			this.label6.Text = "Last Five Accounts";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(75, 212);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(79, 13);
-			this.label7.TabIndex = 6;
-			this.label7.Text = "Total Accounts";
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(231, 70);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(60, 13);
-			this.label8.TabIndex = 15;
-			this.label8.Text = "User Name";
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(371, 70);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(18, 13);
-			this.label9.TabIndex = 16;
-			this.label9.Text = "ID";
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(231, 122);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(58, 13);
-			this.label10.TabIndex = 17;
-			this.label10.Text = "Registered";
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(231, 174);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(32, 13);
-			this.label11.TabIndex = 18;
-			this.label11.Text = "Flags";
-			// 
-			// Form1
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(600, 294);
-			this.Controls.Add(this.tabControl1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MaximizeBox = false;
-			this.Name = "Form1";
-			this.Text = "ClassiCube API";
-			this.tabControl1.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
-			this.tabPage1.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			this.tabPage2.ResumeLayout(false);
-			this.tabPage2.PerformLayout();
-			this.ResumeLayout(false);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.tabs = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.bRawPlayer = new System.Windows.Forms.Button();
+            this.lFlags = new System.Windows.Forms.Label();
+            this.lRegistered = new System.Windows.Forms.Label();
+            this.lID = new System.Windows.Forms.Label();
+            this.lUserName = new System.Windows.Forms.Label();
+            this.bIDLookup = new System.Windows.Forms.Button();
+            this.tbUserName = new System.Windows.Forms.TextBox();
+            this.tbFlags = new System.Windows.Forms.TextBox();
+            this.tbRegistered = new System.Windows.Forms.TextBox();
+            this.tbID = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.bRawLast5 = new System.Windows.Forms.Button();
+            this.lTotal = new System.Windows.Forms.Label();
+            this.lLast5 = new System.Windows.Forms.Label();
+            this.bRefreshLast5 = new System.Windows.Forms.Button();
+            this.tbLast5 = new System.Windows.Forms.TextBox();
+            this.tbTotal = new System.Windows.Forms.TextBox();
+            this.bLookup = new System.Windows.Forms.Button();
+            this.tBSearch = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.bRawServer = new System.Windows.Forms.Button();
+            this.lof = new System.Windows.Forms.Label();
+            this.lPlayers = new System.Windows.Forms.Label();
+            this.lSoftware = new System.Windows.Forms.Label();
+            this.lUptime = new System.Windows.Forms.Label();
+            this.lServer = new System.Windows.Forms.Label();
+            this.txMaxPlayers = new System.Windows.Forms.TextBox();
+            this.tbSoftware = new System.Windows.Forms.TextBox();
+            this.tbUptime = new System.Windows.Forms.TextBox();
+            this.tbPlayers = new System.Windows.Forms.TextBox();
+            this.bRefreshServers = new System.Windows.Forms.Button();
+            this.cbServer = new System.Windows.Forms.ComboBox();
+            this.tabs.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // tabs
+            // 
+            this.tabs.Controls.Add(this.tabPage1);
+            this.tabs.Controls.Add(this.tabPage2);
+            this.tabs.Location = new System.Drawing.Point(12, 12);
+            this.tabs.Name = "tabs";
+            this.tabs.SelectedIndex = 0;
+            this.tabs.Size = new System.Drawing.Size(576, 270);
+            this.tabs.TabIndex = 1;
+            this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabControl1_Change);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.bRawPlayer);
+            this.tabPage1.Controls.Add(this.lFlags);
+            this.tabPage1.Controls.Add(this.lRegistered);
+            this.tabPage1.Controls.Add(this.lID);
+            this.tabPage1.Controls.Add(this.lUserName);
+            this.tabPage1.Controls.Add(this.bIDLookup);
+            this.tabPage1.Controls.Add(this.tbUserName);
+            this.tabPage1.Controls.Add(this.tbFlags);
+            this.tabPage1.Controls.Add(this.tbRegistered);
+            this.tabPage1.Controls.Add(this.tbID);
+            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Controls.Add(this.bLookup);
+            this.tabPage1.Controls.Add(this.tBSearch);
+            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(568, 244);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Players";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // bRawPlayer
+            // 
+            this.bRawPlayer.Location = new System.Drawing.Point(518, 140);
+            this.bRawPlayer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bRawPlayer.Name = "bRawPlayer";
+            this.bRawPlayer.Size = new System.Drawing.Size(47, 23);
+            this.bRawPlayer.TabIndex = 22;
+            this.bRawPlayer.Text = "Raw";
+            this.bRawPlayer.UseVisualStyleBackColor = true;
+            this.bRawPlayer.Click += new System.EventHandler(this.bRawPlayer_Click);
+            // 
+            // lFlags
+            // 
+            this.lFlags.AutoSize = true;
+            this.lFlags.Location = new System.Drawing.Point(234, 175);
+            this.lFlags.Name = "lFlags";
+            this.lFlags.Size = new System.Drawing.Size(32, 13);
+            this.lFlags.TabIndex = 18;
+            this.lFlags.Text = "Flags";
+            // 
+            // lRegistered
+            // 
+            this.lRegistered.AutoSize = true;
+            this.lRegistered.Location = new System.Drawing.Point(234, 124);
+            this.lRegistered.Name = "lRegistered";
+            this.lRegistered.Size = new System.Drawing.Size(58, 13);
+            this.lRegistered.TabIndex = 17;
+            this.lRegistered.Text = "Registered";
+            // 
+            // lID
+            // 
+            this.lID.AutoSize = true;
+            this.lID.Location = new System.Drawing.Point(374, 71);
+            this.lID.Name = "lID";
+            this.lID.Size = new System.Drawing.Size(18, 13);
+            this.lID.TabIndex = 16;
+            this.lID.Text = "ID";
+            // 
+            // lUserName
+            // 
+            this.lUserName.AutoSize = true;
+            this.lUserName.Location = new System.Drawing.Point(234, 72);
+            this.lUserName.Name = "lUserName";
+            this.lUserName.Size = new System.Drawing.Size(60, 13);
+            this.lUserName.TabIndex = 15;
+            this.lUserName.Text = "User Name";
+            // 
+            // bIDLookup
+            // 
+            this.bIDLookup.Location = new System.Drawing.Point(399, 7);
+            this.bIDLookup.Name = "bIDLookup";
+            this.bIDLookup.Size = new System.Drawing.Size(29, 23);
+            this.bIDLookup.TabIndex = 14;
+            this.bIDLookup.Text = "ID";
+            this.bIDLookup.UseVisualStyleBackColor = true;
+            this.bIDLookup.Click += new System.EventHandler(this.bIDLookup_Click);
+            // 
+            // tbUserName
+            // 
+            this.tbUserName.Location = new System.Drawing.Point(234, 88);
+            this.tbUserName.Name = "tbUserName";
+            this.tbUserName.ReadOnly = true;
+            this.tbUserName.Size = new System.Drawing.Size(134, 20);
+            this.tbUserName.TabIndex = 10;
+            // 
+            // tbFlags
+            // 
+            this.tbFlags.Location = new System.Drawing.Point(6, 190);
+            this.tbFlags.Multiline = true;
+            this.tbFlags.Name = "tbFlags";
+            this.tbFlags.ReadOnly = true;
+            this.tbFlags.Size = new System.Drawing.Size(559, 45);
+            this.tbFlags.TabIndex = 9;
+            // 
+            // tbRegistered
+            // 
+            this.tbRegistered.Location = new System.Drawing.Point(234, 140);
+            this.tbRegistered.Name = "tbRegistered";
+            this.tbRegistered.ReadOnly = true;
+            this.tbRegistered.Size = new System.Drawing.Size(277, 20);
+            this.tbRegistered.TabIndex = 7;
+            // 
+            // tbID
+            // 
+            this.tbID.Location = new System.Drawing.Point(376, 88);
+            this.tbID.Name = "tbID";
+            this.tbID.ReadOnly = true;
+            this.tbID.Size = new System.Drawing.Size(54, 20);
+            this.tbID.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.bRawLast5);
+            this.panel1.Controls.Add(this.lTotal);
+            this.panel1.Controls.Add(this.lLast5);
+            this.panel1.Controls.Add(this.bRefreshLast5);
+            this.panel1.Controls.Add(this.tbLast5);
+            this.panel1.Controls.Add(this.tbTotal);
+            this.panel1.Location = new System.Drawing.Point(6, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(222, 152);
+            this.panel1.TabIndex = 3;
+            // 
+            // bRawLast5
+            // 
+            this.bRawLast5.Location = new System.Drawing.Point(2, 127);
+            this.bRawLast5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bRawLast5.Name = "bRawLast5";
+            this.bRawLast5.Size = new System.Drawing.Size(47, 23);
+            this.bRawLast5.TabIndex = 23;
+            this.bRawLast5.Text = "Raw";
+            this.bRawLast5.UseVisualStyleBackColor = true;
+            this.bRawLast5.Click += new System.EventHandler(this.bRawLast5_Click);
+            // 
+            // lTotal
+            // 
+            this.lTotal.AutoSize = true;
+            this.lTotal.Location = new System.Drawing.Point(75, 114);
+            this.lTotal.Name = "lTotal";
+            this.lTotal.Size = new System.Drawing.Size(79, 13);
+            this.lTotal.TabIndex = 6;
+            this.lTotal.Text = "Total Accounts";
+            // 
+            // lLast5
+            // 
+            this.lLast5.AutoSize = true;
+            this.lLast5.Location = new System.Drawing.Point(1, 13);
+            this.lLast5.Name = "lLast5";
+            this.lLast5.Size = new System.Drawing.Size(98, 13);
+            this.lLast5.TabIndex = 5;
+            this.lLast5.Text = "Last Five Accounts";
+            // 
+            // bRefreshLast5
+            // 
+            this.bRefreshLast5.Location = new System.Drawing.Point(144, 1);
+            this.bRefreshLast5.Name = "bRefreshLast5";
+            this.bRefreshLast5.Size = new System.Drawing.Size(75, 23);
+            this.bRefreshLast5.TabIndex = 4;
+            this.bRefreshLast5.Text = "Refresh";
+            this.bRefreshLast5.UseVisualStyleBackColor = true;
+            this.bRefreshLast5.Click += new System.EventHandler(this.bRefreshLast5_Click);
+            // 
+            // tbLast5
+            // 
+            this.tbLast5.Location = new System.Drawing.Point(4, 29);
+            this.tbLast5.Multiline = true;
+            this.tbLast5.Name = "tbLast5";
+            this.tbLast5.ReadOnly = true;
+            this.tbLast5.Size = new System.Drawing.Size(215, 76);
+            this.tbLast5.TabIndex = 2;
+            this.tbLast5.Text = "1\r\n2\r\n3\r\n4\r\n5";
+            // 
+            // tbTotal
+            // 
+            this.tbTotal.Location = new System.Drawing.Point(160, 110);
+            this.tbTotal.Name = "tbTotal";
+            this.tbTotal.ReadOnly = true;
+            this.tbTotal.Size = new System.Drawing.Size(59, 20);
+            this.tbTotal.TabIndex = 0;
+            this.tbTotal.Text = "1337";
+            // 
+            // bLookup
+            // 
+            this.bLookup.Location = new System.Drawing.Point(339, 7);
+            this.bLookup.Name = "bLookup";
+            this.bLookup.Size = new System.Drawing.Size(54, 23);
+            this.bLookup.TabIndex = 2;
+            this.bLookup.Text = "Lookup Player/ID";
+            this.bLookup.UseVisualStyleBackColor = true;
+            this.bLookup.Click += new System.EventHandler(this.bLookup_Click);
+            // 
+            // tBSearch
+            // 
+            this.tBSearch.Location = new System.Drawing.Point(234, 10);
+            this.tBSearch.Name = "tBSearch";
+            this.tBSearch.Size = new System.Drawing.Size(100, 20);
+            this.tBSearch.TabIndex = 1;
+            this.tBSearch.Text = "Player Name/ID";
+            this.tBSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tBSearch_Key);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(436, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.bRawServer);
+            this.tabPage2.Controls.Add(this.lof);
+            this.tabPage2.Controls.Add(this.lPlayers);
+            this.tabPage2.Controls.Add(this.lSoftware);
+            this.tabPage2.Controls.Add(this.lUptime);
+            this.tabPage2.Controls.Add(this.lServer);
+            this.tabPage2.Controls.Add(this.txMaxPlayers);
+            this.tabPage2.Controls.Add(this.tbSoftware);
+            this.tabPage2.Controls.Add(this.tbUptime);
+            this.tabPage2.Controls.Add(this.tbPlayers);
+            this.tabPage2.Controls.Add(this.bRefreshServers);
+            this.tabPage2.Controls.Add(this.cbServer);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(568, 244);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Servers";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // bRawServer
+            // 
+            this.bRawServer.Location = new System.Drawing.Point(5, 218);
+            this.bRawServer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bRawServer.Name = "bRawServer";
+            this.bRawServer.Size = new System.Drawing.Size(47, 23);
+            this.bRawServer.TabIndex = 23;
+            this.bRawServer.Text = "Raw";
+            this.bRawServer.UseVisualStyleBackColor = true;
+            this.bRawServer.Click += new System.EventHandler(this.bRawServer_Click);
+            // 
+            // lof
+            // 
+            this.lof.AutoSize = true;
+            this.lof.Location = new System.Drawing.Point(468, 62);
+            this.lof.Name = "lof";
+            this.lof.Size = new System.Drawing.Size(16, 13);
+            this.lof.TabIndex = 19;
+            this.lof.Text = "of";
+            // 
+            // lPlayers
+            // 
+            this.lPlayers.AutoSize = true;
+            this.lPlayers.Location = new System.Drawing.Point(389, 40);
+            this.lPlayers.Name = "lPlayers";
+            this.lPlayers.Size = new System.Drawing.Size(67, 13);
+            this.lPlayers.TabIndex = 18;
+            this.lPlayers.Text = "Player Count";
+            // 
+            // lSoftware
+            // 
+            this.lSoftware.AutoSize = true;
+            this.lSoftware.Location = new System.Drawing.Point(5, 144);
+            this.lSoftware.Name = "lSoftware";
+            this.lSoftware.Size = new System.Drawing.Size(49, 13);
+            this.lSoftware.TabIndex = 17;
+            this.lSoftware.Text = "Software";
+            // 
+            // lUptime
+            // 
+            this.lUptime.AutoSize = true;
+            this.lUptime.Location = new System.Drawing.Point(5, 92);
+            this.lUptime.Name = "lUptime";
+            this.lUptime.Size = new System.Drawing.Size(40, 13);
+            this.lUptime.TabIndex = 16;
+            this.lUptime.Text = "Uptime";
+            // 
+            // lServer
+            // 
+            this.lServer.AutoSize = true;
+            this.lServer.Location = new System.Drawing.Point(5, 40);
+            this.lServer.Name = "lServer";
+            this.lServer.Size = new System.Drawing.Size(38, 13);
+            this.lServer.TabIndex = 15;
+            this.lServer.Text = "Server";
+            // 
+            // txMaxPlayers
+            // 
+            this.txMaxPlayers.Location = new System.Drawing.Point(489, 59);
+            this.txMaxPlayers.Name = "txMaxPlayers";
+            this.txMaxPlayers.ReadOnly = true;
+            this.txMaxPlayers.Size = new System.Drawing.Size(76, 20);
+            this.txMaxPlayers.TabIndex = 13;
+            // 
+            // tbSoftware
+            // 
+            this.tbSoftware.Location = new System.Drawing.Point(5, 163);
+            this.tbSoftware.Name = "tbSoftware";
+            this.tbSoftware.ReadOnly = true;
+            this.tbSoftware.Size = new System.Drawing.Size(560, 20);
+            this.tbSoftware.TabIndex = 11;
+            // 
+            // tbUptime
+            // 
+            this.tbUptime.Location = new System.Drawing.Point(5, 111);
+            this.tbUptime.Name = "tbUptime";
+            this.tbUptime.ReadOnly = true;
+            this.tbUptime.Size = new System.Drawing.Size(560, 20);
+            this.tbUptime.TabIndex = 9;
+            // 
+            // tbPlayers
+            // 
+            this.tbPlayers.Location = new System.Drawing.Point(392, 59);
+            this.tbPlayers.Name = "tbPlayers";
+            this.tbPlayers.ReadOnly = true;
+            this.tbPlayers.Size = new System.Drawing.Size(72, 20);
+            this.tbPlayers.TabIndex = 5;
+            this.tbPlayers.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // bRefreshServers
+            // 
+            this.bRefreshServers.Location = new System.Drawing.Point(489, 217);
+            this.bRefreshServers.Name = "bRefreshServers";
+            this.bRefreshServers.Size = new System.Drawing.Size(75, 23);
+            this.bRefreshServers.TabIndex = 1;
+            this.bRefreshServers.Text = "Refresh";
+            this.bRefreshServers.UseVisualStyleBackColor = true;
+            this.bRefreshServers.Click += new System.EventHandler(this.bRefreshServers_Click);
+            // 
+            // cbServer
+            // 
+            this.cbServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbServer.FormattingEnabled = true;
+            this.cbServer.Location = new System.Drawing.Point(5, 59);
+            this.cbServer.Name = "cbServer";
+            this.cbServer.Size = new System.Drawing.Size(380, 21);
+            this.cbServer.TabIndex = 0;
+            this.cbServer.SelectedIndexChanged += new System.EventHandler(this.cbServer_SelectedIndexChanged);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(600, 294);
+            this.Controls.Add(this.tabs);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "Form1";
+            this.Text = "ClassiCube API";
+            this.tabs.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabControl tabs;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Button bLookup;
+		private System.Windows.Forms.TextBox tBSearch;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.TextBox textBox4;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.TextBox textBox15;
-		private System.Windows.Forms.TextBox textBox13;
-		private System.Windows.Forms.TextBox textBox9;
-		private System.Windows.Forms.TextBox textBox7;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.TextBox textBox17;
-		private System.Windows.Forms.TextBox textBox24;
-		private System.Windows.Forms.TextBox textBox23;
-		private System.Windows.Forms.TextBox textBox21;
-		private System.Windows.Forms.TextBox textBox19;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label1;
-	}
+		private System.Windows.Forms.TextBox tbLast5;
+		private System.Windows.Forms.TextBox tbTotal;
+		private System.Windows.Forms.TextBox tbSoftware;
+		private System.Windows.Forms.TextBox tbUptime;
+		private System.Windows.Forms.TextBox tbPlayers;
+		private System.Windows.Forms.Button bRefreshServers;
+		private System.Windows.Forms.ComboBox cbServer;
+		private System.Windows.Forms.TextBox txMaxPlayers;
+		private System.Windows.Forms.TextBox tbUserName;
+		private System.Windows.Forms.TextBox tbFlags;
+		private System.Windows.Forms.TextBox tbRegistered;
+		private System.Windows.Forms.TextBox tbID;
+		private System.Windows.Forms.Button bRefreshLast5;
+		private System.Windows.Forms.Button bIDLookup;
+		private System.Windows.Forms.Label lFlags;
+		private System.Windows.Forms.Label lRegistered;
+		private System.Windows.Forms.Label lID;
+		private System.Windows.Forms.Label lUserName;
+		private System.Windows.Forms.Label lTotal;
+		private System.Windows.Forms.Label lLast5;
+		private System.Windows.Forms.Label lof;
+		private System.Windows.Forms.Label lPlayers;
+		private System.Windows.Forms.Label lSoftware;
+		private System.Windows.Forms.Label lUptime;
+		private System.Windows.Forms.Label lServer;
+        private System.Windows.Forms.Button bRawPlayer;
+        private System.Windows.Forms.Button bRawLast5;
+        private System.Windows.Forms.Button bRawServer;
+    }
 }
 

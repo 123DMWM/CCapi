@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ServiceStack.Text;
-using Newtonsoft.Json;
 using System.Net;
 using System.IO;
 using System.Text.RegularExpressions;
+using Jason;
 
 namespace CCapi {
 	public partial class Form1 : Form {		
@@ -20,20 +16,20 @@ namespace CCapi {
 			getLastFive();
 		}
 		#region Players
-		private void button1_Click(object sender, EventArgs e) {
+		private void bLookup_Click(object sender, EventArgs e) {
 			getPlayer(1);
 		}
 
-		private void button4_Click(object sender, EventArgs e) {
+		private void bIDLookup_Click(object sender, EventArgs e) {
 			getPlayer(2);
 		}
-		private void textBox1_Key(object sender, KeyEventArgs e) {
+		private void tBSearch_Key(object sender, KeyEventArgs e) {
 			if (e.KeyCode == Keys.Enter) {
 				getPlayer(3);
 			}
 		}
 		private void getPlayer(byte function) {
-			string name = textBox1.Text;
+			string name = tBSearch.Text;
 			var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 			JsonObject result = null;
 			string api;
@@ -87,10 +83,10 @@ namespace CCapi {
 			if (retern)
 				return;
 
-			textBox24.Text = result.Get("username");
-			textBox19.Text = result.Get("id");
+			tbUserName.Text = result.Get("username");
+			tbID.Text = result.Get("id");
 			DateTime registered = epoch.AddSeconds(double.Parse(result.Get("registered"))).ToLocalTime();
-			textBox21.Text = registered.ToLongDateString() + " at " + registered.ToLongTimeString();
+			tbRegistered.Text = registered.ToLongDateString() + " at " + registered.ToLongTimeString();
 			string flagsResult = result.Get("flags");
 			string flags = "ClassiCube User, ";
 			if (flagsResult.Contains('b')) {
@@ -108,7 +104,7 @@ namespace CCapi {
 			if (flagsResult.Contains('e')) {
 				flags += "ClassiCube Blog Editor, ";
 			}
-			textBox23.Text = flags.Remove(flags.Length - 2, 2);
+			tbFlags.Text = flags.Remove(flags.Length - 2, 2);
 			pictureBox1.Image = getAvatar(result.Get("username"));
 		}
 		private Image getAvatar(string name) {
@@ -129,49 +125,64 @@ namespace CCapi {
 			Regex nan = new Regex("[^a-zA-Z0-9_.,]");
 			try {
 				result = JsonObject.Parse((new WebClient()).DownloadString("http://www.classicube.net/api/players"));
-				textBox4.Text = nan.Replace(result.Get("lastfive"), "").Replace(",", Environment.NewLine);
-				textBox2.Text = result.Get("playercount");
+				tbLast5.Text = nan.Replace(result.Get("lastfive"), "").Replace(",", Environment.NewLine);
+				tbTotal.Text = result.Get("playercount");
 			} catch {
 				MessageBox.Show("ClassiCube.net might be down!");
 				return;
 			}
 		}
-		private void button3_Click(object sender, EventArgs e) {
+		private void bRefreshLast5_Click(object sender, EventArgs e) {
 			getLastFive();
 		}
 		#endregion
 		#region Servers
-		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+		private void cbServer_SelectedIndexChanged(object sender, EventArgs e) {
 			getServerInfo();
 		}
 		private void tabControl1_Change(object sender, EventArgs e) {
-			if (tabControl1.TabIndex == 1) {
+			if (tabs.TabIndex == 1) {
 				getServers();
 			}
 		}
-		private void button2_Click(object sender, EventArgs e) {
+		private void bRefreshServers_Click(object sender, EventArgs e) {
 			getServers();
 		}
 		List<ccServer> servers;
 		private void getServers() {
-			string content = new StreamReader(new WebClient().OpenRead("http://www.classicube.net/api/serverlist")).ReadToEnd();
-			servers = JsonConvert.DeserializeObject<List<ccServer>>(content);
-			comboBox1.Items.Clear();
-			textBox7.Text = "";
-			textBox9.Text = "";
-			textBox17.Text = "";
-			textBox13.Text = "";
-			textBox15.Text = "";
+            servers = GetPublicServers();
+			cbServer.Items.Clear();
+			tbPlayers.Text = "";
+			txMaxPlayers.Text = "";
+			tbUptime.Text = "";
+			tbSoftware.Text = "";
 			for (int i = 0; i < servers.Count; i++) {
-				comboBox1.Items.Add(servers[i].name);
+				cbServer.Items.Add(servers[i].Name);
 			}
 		}
-		private void getServerInfo() {
-			textBox7.Text = servers[comboBox1.SelectedIndex].name;
-			textBox9.Text = servers[comboBox1.SelectedIndex].players;
-			textBox17.Text = servers[comboBox1.SelectedIndex].maxplayers;
-			textBox13.Text = timeToString(TimeSpan.FromSeconds(double.Parse(servers[comboBox1.SelectedIndex].uptime)));
-			textBox15.Text = servers[comboBox1.SelectedIndex].software;
+
+        public List<ccServer> GetPublicServers() {
+            List<ccServer> servers = new List<ccServer>();
+            string response = new StreamReader(new WebClient().OpenRead("http://www.classicube.net/api/servers")).ReadToEnd();
+            int index = 0; bool success = true;
+            Dictionary<string, object> root =
+                (Dictionary<string, object>)Json.ParseValue(response, ref index, ref success);
+            List<object> list = (List<object>)root["servers"];
+
+            foreach (object server in list) {
+                Dictionary<string, object> pairs = (Dictionary<string, object>)server;
+                servers.Add(new ccServer(
+                    (string)pairs["hash"], (string)pairs["name"],
+                    (string)pairs["players"], (string)pairs["maxplayers"],
+                    (string)pairs["uptime"], (string)pairs["software"]));
+            }
+            return servers;
+        }
+        private void getServerInfo() {
+			tbPlayers.Text = servers[cbServer.SelectedIndex].Players;
+			txMaxPlayers.Text = servers[cbServer.SelectedIndex].MaximumPlayers;
+			tbUptime.Text = timeToString(TimeSpan.FromSeconds(double.Parse(servers[cbServer.SelectedIndex].Uptime)));
+			tbSoftware.Text = servers[cbServer.SelectedIndex].Software;
 			return;
 		}
 		private string timeToString(TimeSpan span) {
@@ -188,14 +199,37 @@ namespace CCapi {
 			}
 		}
 
-	}
-	class ccServer {
-		public String hash { get; set; }
-		public String maxplayers { get; set; }
-		public String name { get; set; }
-		public String players { get; set; }
-		public String software { get; set; }
-		public String uptime { get; set; }
-	}
+        private void bRawLast5_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.classicube.net/api/players");
+        }
+
+        private void bRawPlayer_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.classicube.net/api/id/" + tbID.Text); 
+        }
+
+        private void bRawServer_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.classicube.net/api/servers");
+        }
+    }
+    public class ccServer {
+		public string Hash { get; set; }
+		public string MaximumPlayers { get; set; }
+		public string Name { get; set; }
+		public string Players { get; set; }
+		public string Software { get; set; }
+		public string Uptime { get; set; }
+
+        public ccServer(string hash, string name, string players, string maxPlayers, string uptime, string software) {
+            Hash = hash;
+            Name = name;
+            Players = players;
+            MaximumPlayers = maxPlayers;
+            Uptime = uptime;
+            Software = software;
+        }
+    }
 		#endregion
 }
