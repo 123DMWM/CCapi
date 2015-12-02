@@ -47,6 +47,9 @@
             this.tBSearch = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.bOpenHash = new System.Windows.Forms.Button();
+            this.lHash = new System.Windows.Forms.Label();
+            this.tbHash = new System.Windows.Forms.TextBox();
             this.bRawServer = new System.Windows.Forms.Button();
             this.lof = new System.Windows.Forms.Label();
             this.lPlayers = new System.Windows.Forms.Label();
@@ -95,7 +98,7 @@
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(568, 244);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Players";
@@ -104,7 +107,7 @@
             // bRawPlayer
             // 
             this.bRawPlayer.Location = new System.Drawing.Point(518, 140);
-            this.bRawPlayer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bRawPlayer.Margin = new System.Windows.Forms.Padding(2);
             this.bRawPlayer.Name = "bRawPlayer";
             this.bRawPlayer.Size = new System.Drawing.Size(47, 23);
             this.bRawPlayer.TabIndex = 22;
@@ -207,7 +210,7 @@
             // bRawLast5
             // 
             this.bRawLast5.Location = new System.Drawing.Point(2, 127);
-            this.bRawLast5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bRawLast5.Margin = new System.Windows.Forms.Padding(2);
             this.bRawLast5.Name = "bRawLast5";
             this.bRawLast5.Size = new System.Drawing.Size(47, 23);
             this.bRawLast5.TabIndex = 23;
@@ -291,6 +294,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.bOpenHash);
+            this.tabPage2.Controls.Add(this.lHash);
+            this.tabPage2.Controls.Add(this.tbHash);
             this.tabPage2.Controls.Add(this.bRawServer);
             this.tabPage2.Controls.Add(this.lof);
             this.tabPage2.Controls.Add(this.lPlayers);
@@ -305,16 +311,44 @@
             this.tabPage2.Controls.Add(this.cbServer);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(568, 244);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Servers";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // bOpenHash
+            // 
+            this.bOpenHash.Location = new System.Drawing.Point(515, 159);
+            this.bOpenHash.Margin = new System.Windows.Forms.Padding(2);
+            this.bOpenHash.Name = "bOpenHash";
+            this.bOpenHash.Size = new System.Drawing.Size(47, 23);
+            this.bOpenHash.TabIndex = 26;
+            this.bOpenHash.Text = "Play";
+            this.bOpenHash.UseVisualStyleBackColor = true;
+            this.bOpenHash.Click += new System.EventHandler(this.bOpenHash_Click);
+            // 
+            // lHash
+            // 
+            this.lHash.AutoSize = true;
+            this.lHash.Location = new System.Drawing.Point(6, 142);
+            this.lHash.Name = "lHash";
+            this.lHash.Size = new System.Drawing.Size(55, 13);
+            this.lHash.TabIndex = 25;
+            this.lHash.Text = "Play Hash";
+            // 
+            // tbHash
+            // 
+            this.tbHash.Location = new System.Drawing.Point(6, 161);
+            this.tbHash.Name = "tbHash";
+            this.tbHash.ReadOnly = true;
+            this.tbHash.Size = new System.Drawing.Size(504, 20);
+            this.tbHash.TabIndex = 24;
+            // 
             // bRawServer
             // 
             this.bRawServer.Location = new System.Drawing.Point(5, 218);
-            this.bRawServer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bRawServer.Margin = new System.Windows.Forms.Padding(2);
             this.bRawServer.Name = "bRawServer";
             this.bRawServer.Size = new System.Drawing.Size(47, 23);
             this.bRawServer.TabIndex = 23;
@@ -325,7 +359,7 @@
             // lof
             // 
             this.lof.AutoSize = true;
-            this.lof.Location = new System.Drawing.Point(468, 62);
+            this.lof.Location = new System.Drawing.Point(469, 28);
             this.lof.Name = "lof";
             this.lof.Size = new System.Drawing.Size(16, 13);
             this.lof.TabIndex = 19;
@@ -334,7 +368,7 @@
             // lPlayers
             // 
             this.lPlayers.AutoSize = true;
-            this.lPlayers.Location = new System.Drawing.Point(389, 40);
+            this.lPlayers.Location = new System.Drawing.Point(390, 6);
             this.lPlayers.Name = "lPlayers";
             this.lPlayers.Size = new System.Drawing.Size(67, 13);
             this.lPlayers.TabIndex = 18;
@@ -343,7 +377,7 @@
             // lSoftware
             // 
             this.lSoftware.AutoSize = true;
-            this.lSoftware.Location = new System.Drawing.Point(5, 144);
+            this.lSoftware.Location = new System.Drawing.Point(6, 100);
             this.lSoftware.Name = "lSoftware";
             this.lSoftware.Size = new System.Drawing.Size(49, 13);
             this.lSoftware.TabIndex = 17;
@@ -352,7 +386,7 @@
             // lUptime
             // 
             this.lUptime.AutoSize = true;
-            this.lUptime.Location = new System.Drawing.Point(5, 92);
+            this.lUptime.Location = new System.Drawing.Point(6, 58);
             this.lUptime.Name = "lUptime";
             this.lUptime.Size = new System.Drawing.Size(40, 13);
             this.lUptime.TabIndex = 16;
@@ -361,7 +395,7 @@
             // lServer
             // 
             this.lServer.AutoSize = true;
-            this.lServer.Location = new System.Drawing.Point(5, 40);
+            this.lServer.Location = new System.Drawing.Point(6, 6);
             this.lServer.Name = "lServer";
             this.lServer.Size = new System.Drawing.Size(38, 13);
             this.lServer.TabIndex = 15;
@@ -369,31 +403,31 @@
             // 
             // txMaxPlayers
             // 
-            this.txMaxPlayers.Location = new System.Drawing.Point(489, 59);
+            this.txMaxPlayers.Location = new System.Drawing.Point(490, 25);
             this.txMaxPlayers.Name = "txMaxPlayers";
             this.txMaxPlayers.ReadOnly = true;
-            this.txMaxPlayers.Size = new System.Drawing.Size(76, 20);
+            this.txMaxPlayers.Size = new System.Drawing.Size(72, 20);
             this.txMaxPlayers.TabIndex = 13;
             // 
             // tbSoftware
             // 
-            this.tbSoftware.Location = new System.Drawing.Point(5, 163);
+            this.tbSoftware.Location = new System.Drawing.Point(6, 119);
             this.tbSoftware.Name = "tbSoftware";
             this.tbSoftware.ReadOnly = true;
-            this.tbSoftware.Size = new System.Drawing.Size(560, 20);
+            this.tbSoftware.Size = new System.Drawing.Size(556, 20);
             this.tbSoftware.TabIndex = 11;
             // 
             // tbUptime
             // 
-            this.tbUptime.Location = new System.Drawing.Point(5, 111);
+            this.tbUptime.Location = new System.Drawing.Point(6, 77);
             this.tbUptime.Name = "tbUptime";
             this.tbUptime.ReadOnly = true;
-            this.tbUptime.Size = new System.Drawing.Size(560, 20);
+            this.tbUptime.Size = new System.Drawing.Size(556, 20);
             this.tbUptime.TabIndex = 9;
             // 
             // tbPlayers
             // 
-            this.tbPlayers.Location = new System.Drawing.Point(392, 59);
+            this.tbPlayers.Location = new System.Drawing.Point(393, 25);
             this.tbPlayers.Name = "tbPlayers";
             this.tbPlayers.ReadOnly = true;
             this.tbPlayers.Size = new System.Drawing.Size(72, 20);
@@ -414,7 +448,7 @@
             // 
             this.cbServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbServer.FormattingEnabled = true;
-            this.cbServer.Location = new System.Drawing.Point(5, 59);
+            this.cbServer.Location = new System.Drawing.Point(6, 25);
             this.cbServer.Name = "cbServer";
             this.cbServer.Size = new System.Drawing.Size(380, 21);
             this.cbServer.TabIndex = 0;
@@ -480,6 +514,9 @@
         private System.Windows.Forms.Button bRawPlayer;
         private System.Windows.Forms.Button bRawLast5;
         private System.Windows.Forms.Button bRawServer;
+        private System.Windows.Forms.Label lHash;
+        private System.Windows.Forms.TextBox tbHash;
+        private System.Windows.Forms.Button bOpenHash;
     }
 }
 
