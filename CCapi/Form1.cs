@@ -93,7 +93,7 @@ namespace CCapi {
                 flags += "Banned from forums, ";
             }
             if (flagsResult.Contains('d')) {
-                flags += "ClassiCube Devloper, ";
+                flags += "ClassiCube Developer, ";
             }
             if (flagsResult.Contains('m')) {
                 flags += "Forum Moderator, ";
