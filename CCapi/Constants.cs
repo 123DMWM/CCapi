@@ -7,6 +7,8 @@ namespace CCapi {
         
         public static DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         
+        public const string NotFound = "User not found";
+        
         public static Dictionary<char, string> UserFlags
             = new Dictionary<char, string>() {
             { 'b', "Banned from forums" },

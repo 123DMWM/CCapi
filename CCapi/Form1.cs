@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using ServiceStack.Text;
-using System.Net;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using Jason;
+using ServiceStack.Text;
 
 namespace CCapi {
     public partial class Form1 : Form {
@@ -43,45 +43,32 @@ namespace CCapi {
             } else {
                 api = "player/";
             }
-            bool retern = false;
+
             switch (function) {
                 case 1:
                 case 2:
-                    try {
-                        result = JsonObject.Parse((new WebClient()).DownloadString("http://www.classicube.net/api/" + api + name));
-                        if (("User not found").Equals(result.Get("error"))) {
-                            MessageBox.Show("No player found by that Name or ID!");
-                            retern = true;
-                            break;
-                        }
-                    } catch {
-                        MessageBox.Show("ClassiCube.net might be down!");
-                        retern = true;
-                        break;
+                    result = GetUserData(api + name);
+                    if (result == null) return;
+                    
+                    if (result.Get("error") == Constants.NotFound) {
+                        MessageBox.Show("No player found by that Name or ID!");
+                        return;
                     }
                     break;
                 case 3:
-                    try {
-                        result = JsonObject.Parse((new WebClient()).DownloadString("http://www.classicube.net/api/player/" + name));
-                    } catch {
-                        MessageBox.Show("ClassiCube.net might be down!");
-                        retern = true;
-                        break;
+                    result = GetUserData("player/" + name);
+                    if (result == null) return;
+                    if (result.Get("error") != Constants.NotFound) break;
+                    
+                    result = GetUserData("id/" + name);
+                    if (result == null) return;
+                    
+                    if (result.Get("error") == Constants.NotFound) {
+                        MessageBox.Show("No player found by that Name or ID!");
+                        return;
                     }
-                    if (result.Get("error").Equals("User not found")) {
-                        result = JsonObject.Parse((new WebClient()).DownloadString("http://www.classicube.net/api/id/" + name));
-                        if (result.Get("error").Equals("User not found")) {
-                            MessageBox.Show("No player found by that Name or ID!");
-                            retern = true;
-                            break;
-                        }
-                    }
-                    break;
-                default:
                     break;
             }
-            if (retern)
-                return;
 
             tbUserName.Text = result.Get("username");
             tbID.Text = result.Get("id");
@@ -97,17 +84,25 @@ namespace CCapi {
             tbFlags.Text = flags.Remove(flags.Length - 2, 2);
             pictureBox1.Image = getAvatar(result.Get("username"));
         }
-        private Image getAvatar(string name) {
-            WebClient client = new WebClient();
-            Stream stream;
+        
+        JsonObject GetUserData(string apiPoint) {
             try {
-                stream = client.OpenRead("http://www.classicube.net/face/" + name);
+                string raw = new WebClient().DownloadString("http://www.classicube.net/api/" + apiPoint);
+                return JsonObject.Parse(raw);
+            } catch {
+                MessageBox.Show("ClassiCube.net might be down!");
+                return null;
+            }
+        }
+        
+        private Image getAvatar(string name) {
+            try {
+                Stream stream = new WebClient().OpenRead("http://www.classicube.net/face/" + name);
                 return Image.FromStream(stream);
             } catch {
                 MessageBox.Show("Failed to get skin. ClassiCube.net might be down!");
                 return null;
             }
-
         }
 
         private void getLastFive() {
