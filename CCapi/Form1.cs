@@ -30,9 +30,9 @@ namespace CCapi {
         }
         private void getPlayer(byte function) {
             string name = tBSearch.Text;
-            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             JsonObject result = null;
             string api;
+            
             if (function == 2) {
                 api = "id/";
                 int id;
@@ -85,24 +85,14 @@ namespace CCapi {
 
             tbUserName.Text = result.Get("username");
             tbID.Text = result.Get("id");
-            DateTime registered = epoch.AddSeconds(double.Parse(result.Get("registered"))).ToLocalTime();
+            DateTime registered = Constants.Epoch.AddSeconds(double.Parse(result.Get("registered"))).ToLocalTime();
             tbRegistered.Text = registered.ToLongDateString() + " at " + registered.ToLongTimeString();
             string flagsResult = result.Get("flags");
             string flags = "ClassiCube User, ";
-            if (flagsResult.Contains('b')) {
-                flags += "Banned from forums, ";
-            }
-            if (flagsResult.Contains('d')) {
-                flags += "ClassiCube Developer, ";
-            }
-            if (flagsResult.Contains('m')) {
-                flags += "Forum Moderator, ";
-            }
-            if (flagsResult.Contains('a')) {
-                flags += "Forum Administrator, ";
-            }
-            if (flagsResult.Contains('e')) {
-                flags += "ClassiCube Blog Editor, ";
+            
+            foreach (var kvp in Constants.UserFlags) {
+                if (flagsResult.IndexOf(kvp.Key) >= 0)
+                    flags += kvp.Value + ", ";
             }
             tbFlags.Text = flags.Remove(flags.Length - 2, 2);
             pictureBox1.Image = getAvatar(result.Get("username"));
@@ -163,7 +153,7 @@ namespace CCapi {
 
         public List<ccServer> GetPublicServers() {
             List<ccServer> servers = new List<ccServer>();
-            string response = new StreamReader(new WebClient().OpenRead("http://www.classicube.net/api/servers")).ReadToEnd();
+            string response = new WebClient().DownloadString("http://www.classicube.net/api/servers");
             int index = 0; bool success = true;
             Dictionary<string, object> root =
                 (Dictionary<string, object>)Json.ParseValue(response, ref index, ref success);
