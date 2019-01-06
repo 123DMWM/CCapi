@@ -16,6 +16,7 @@ namespace CCapi {
             { 'm', "Forum moderator" },
             { 'a', "Forum administrator" },
             { 'e', "ClassiCube blog editor" },
+            { 'p', "ClassiCube Patron" },
         };
     }
 }
