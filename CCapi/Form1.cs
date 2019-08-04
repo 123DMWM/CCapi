@@ -97,7 +97,7 @@ namespace CCapi {
         
         private Image getAvatar(string name) {
             try {
-                Stream stream = new WebClient().OpenRead("https://www.classicube.net/face/" + name);
+                Stream stream = new WebClient().OpenRead("https://www.classicube.net/face/" + name + ".png");
                 return Image.FromStream(stream);
             } catch {
                 MessageBox.Show("Failed to retrieve skin. ClassiCube.net might be down!");
