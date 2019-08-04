@@ -51,7 +51,7 @@ namespace CCapi {
                     if (result == null) return;
                     
                     if (result.Get("error") == Constants.NotFound) {
-                        MessageBox.Show("No player found by that Name or ID!");
+                        MessageBox.Show("No player found by that username or ID!");
                         return;
                     }
                     break;
@@ -64,7 +64,7 @@ namespace CCapi {
                     if (result == null) return;
                     
                     if (result.Get("error") == Constants.NotFound) {
-                        MessageBox.Show("No player found by that Name or ID!");
+                        MessageBox.Show("No player found by that username or ID!");
                         return;
                     }
                     break;
@@ -90,7 +90,7 @@ namespace CCapi {
                 string raw = new WebClient().DownloadString("https://www.classicube.net/api/" + apiPoint);
                 return JsonObject.Parse(raw);
             } catch {
-                MessageBox.Show("ClassiCube.net might be down!");
+                MessageBox.Show("Failed to retrieve API data. ClassiCube.net might be down!");
                 return null;
             }
         }
@@ -100,7 +100,7 @@ namespace CCapi {
                 Stream stream = new WebClient().OpenRead("https://www.classicube.net/face/" + name);
                 return Image.FromStream(stream);
             } catch {
-                MessageBox.Show("Failed to get skin. ClassiCube.net might be down!");
+                MessageBox.Show("Failed to retrieve skin. ClassiCube.net might be down!");
                 return null;
             }
         }
