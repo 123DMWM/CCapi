@@ -87,7 +87,7 @@ namespace CCapi {
         
         JsonObject GetUserData(string apiPoint) {
             try {
-                string raw = new WebClient().DownloadString("http://www.classicube.net/api/" + apiPoint);
+                string raw = new WebClient().DownloadString("https://www.classicube.net/api/" + apiPoint);
                 return JsonObject.Parse(raw);
             } catch {
                 MessageBox.Show("ClassiCube.net might be down!");
@@ -97,7 +97,7 @@ namespace CCapi {
         
         private Image getAvatar(string name) {
             try {
-                Stream stream = new WebClient().OpenRead("http://www.classicube.net/face/" + name);
+                Stream stream = new WebClient().OpenRead("https://www.classicube.net/face/" + name);
                 return Image.FromStream(stream);
             } catch {
                 MessageBox.Show("Failed to get skin. ClassiCube.net might be down!");
@@ -109,7 +109,7 @@ namespace CCapi {
             JsonObject result = null;
             Regex nan = new Regex("[^a-zA-Z0-9_.,]");
             try {
-                result = JsonObject.Parse((new WebClient()).DownloadString("http://www.classicube.net/api/players"));
+                result = JsonObject.Parse((new WebClient()).DownloadString("https://www.classicube.net/api/players"));
                 tbLast5.Text = nan.Replace(result.Get("lastfive"), "").Replace(",", Environment.NewLine);
                 tbTotal.Text = result.Get("playercount");
             } catch {
