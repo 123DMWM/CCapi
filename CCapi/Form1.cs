@@ -200,6 +200,11 @@ namespace CCapi {
         private void bOpenHash_Click(object sender, EventArgs e) {
             System.Diagnostics.Process.Start("http://www.classicube.net/server/play/" + servers[cbServer.SelectedIndex].Hash);
         }
+
+        private void TabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     public class ccServer {
         public string Hash { get; set; }
