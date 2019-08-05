@@ -37,7 +37,7 @@ namespace CCapi {
                 api = "id/";
                 int id;
                 if (!int.TryParse(name, out id)) {
-                    MessageBox.Show("That is not a valid ID!");
+                    MessageBox.Show("That is not a valid ID!", "Error", MessageBoxButtons.OK);
                     return;
                 }
             } else {
@@ -113,7 +113,7 @@ namespace CCapi {
                 tbLast5.Text = nan.Replace(result.Get("lastfive"), "").Replace(",", Environment.NewLine);
                 tbTotal.Text = result.Get("playercount");
             } catch {
-                MessageBox.Show("ClassiCube.net might be down!");
+                MessageBox.Show("Failed to retrieve last five accounts. ClassiCube.net might be down!");
                 return;
             }
         }
