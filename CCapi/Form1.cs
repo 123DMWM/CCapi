@@ -37,7 +37,7 @@ namespace CCapi {
                 api = "id/";
                 int id;
                 if (!int.TryParse(name, out id)) {
-                    MessageBox.Show("That is not a valid ID!", "Error", MessageBoxButtons.OK);
+                    MessageBox.Show("That is not a valid ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             } else {
@@ -51,7 +51,7 @@ namespace CCapi {
                     if (result == null) return;
                     
                     if (result.Get("error") == Constants.NotFound) {
-                        MessageBox.Show("No player found by that username or ID!");
+                        MessageBox.Show("No player found by that username or ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     break;
@@ -64,7 +64,7 @@ namespace CCapi {
                     if (result == null) return;
                     
                     if (result.Get("error") == Constants.NotFound) {
-                        MessageBox.Show("No player found by that username or ID!");
+                        MessageBox.Show("No player found by that username or ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     break;
@@ -90,7 +90,7 @@ namespace CCapi {
                 string raw = new WebClient().DownloadString("https://www.classicube.net/api/" + apiPoint);
                 return JsonObject.Parse(raw);
             } catch {
-                MessageBox.Show("Failed to retrieve API data. ClassiCube.net might be down!");
+                MessageBox.Show("Failed to retrieve API data. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
             }
         }
@@ -100,7 +100,7 @@ namespace CCapi {
                 Stream stream = new WebClient().OpenRead("https://www.classicube.net/face/" + name + ".png");
                 return Image.FromStream(stream);
             } catch {
-                MessageBox.Show("Failed to retrieve skin. ClassiCube.net might be down!");
+                MessageBox.Show("Failed to retrieve skin. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
             }
         }
@@ -113,7 +113,7 @@ namespace CCapi {
                 tbLast5.Text = nan.Replace(result.Get("lastfive"), "").Replace(",", Environment.NewLine);
                 tbTotal.Text = result.Get("playercount");
             } catch {
-                MessageBox.Show("Failed to retrieve last five accounts. ClassiCube.net might be down!");
+                MessageBox.Show("Failed to retrieve last five accounts. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }
