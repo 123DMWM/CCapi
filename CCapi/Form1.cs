@@ -32,11 +32,10 @@ namespace CCapi {
             string name = tBSearch.Text;
             JsonObject result = null;
             string api;
-            
+
             if (function == 2) {
                 api = "id/";
-                int id;
-                if (!int.TryParse(name, out id)) {
+                if (!int.TryParse(name, out _)) {
                     MessageBox.Show("That is not a valid ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -148,7 +147,7 @@ namespace CCapi {
 
         public List<ccServer> GetPublicServers() {
             List<ccServer> servers = new List<ccServer>();
-            string response = new WebClient().DownloadString("http://www.classicube.net/api/servers");
+            string response = new WebClient().DownloadString("https://www.classicube.net/api/servers");
             int index = 0; bool success = true;
             Dictionary<string, object> root =
                 (Dictionary<string, object>)Json.ParseValue(response, ref index, ref success);
@@ -159,7 +158,8 @@ namespace CCapi {
                 servers.Add(new ccServer(
                     (string)pairs["hash"], (string)pairs["name"],
                     (string)pairs["players"], (string)pairs["maxplayers"],
-                    (string)pairs["uptime"], (string)pairs["software"]));
+                    (string)pairs["uptime"], (string)pairs["software"],
+                    (string)pairs["country_abbr"]));
             }
             return servers;
         }
@@ -169,6 +169,7 @@ namespace CCapi {
             tbUptime.Text = timeToString(TimeSpan.FromSeconds(double.Parse(servers[cbServer.SelectedIndex].Uptime)));
             tbSoftware.Text = servers[cbServer.SelectedIndex].Software;
             tbHash.Text = servers[cbServer.SelectedIndex].Hash;
+            tbCountry.Text = servers[cbServer.SelectedIndex].Country;
             return;
         }
         private string timeToString(TimeSpan span) {
@@ -186,19 +187,19 @@ namespace CCapi {
         }
 
         private void bRawLast5_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("http://www.classicube.net/api/players");
+            System.Diagnostics.Process.Start("https://www.classicube.net/api/players");
         }
 
         private void bRawPlayer_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("http://www.classicube.net/api/id/" + tbID.Text);
+            System.Diagnostics.Process.Start("https://www.classicube.net/api/id/" + tbID.Text);
         }
 
         private void bRawServer_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("http://www.classicube.net/api/servers");
+            System.Diagnostics.Process.Start("https://www.classicube.net/api/servers");
         }
 
         private void bOpenHash_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("http://www.classicube.net/server/play/" + servers[cbServer.SelectedIndex].Hash);
+            System.Diagnostics.Process.Start("https://www.classicube.net/server/play/" + servers[cbServer.SelectedIndex].Hash);
         }
     }
     public class ccServer {
@@ -208,14 +209,16 @@ namespace CCapi {
         public string Players { get; set; }
         public string Software { get; set; }
         public string Uptime { get; set; }
+        public string Country { get; set; }
 
-        public ccServer(string hash, string name, string players, string maxPlayers, string uptime, string software) {
+        public ccServer(string hash, string name, string players, string maxPlayers, string uptime, string software, string country_abbr) {
             Hash = hash;
             Name = name;
             Players = players;
             MaximumPlayers = maxPlayers;
             Uptime = uptime;
             Software = software;
+            Country = country_abbr;
         }
     }
     #endregion
