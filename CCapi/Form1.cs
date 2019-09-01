@@ -159,7 +159,7 @@ namespace CCapi {
                     (string)pairs["hash"], (string)pairs["name"],
                     (string)pairs["players"], (string)pairs["maxplayers"],
                     (string)pairs["uptime"], (string)pairs["software"],
-                    (string)pairs["country_abbr"]));
+                    (string)pairs["country_abbr"], (bool)pairs["featured"]));
             }
             return servers;
         }
@@ -170,6 +170,7 @@ namespace CCapi {
             tbSoftware.Text = servers[cbServer.SelectedIndex].Software;
             tbHash.Text = servers[cbServer.SelectedIndex].Hash;
             tbCountry.Text = servers[cbServer.SelectedIndex].Country;
+            tbFeatured.Text = servers[cbServer.SelectedIndex].Featured.ToString();
             return;
         }
         private string timeToString(TimeSpan span) {
@@ -210,8 +211,9 @@ namespace CCapi {
         public string Software { get; set; }
         public string Uptime { get; set; }
         public string Country { get; set; }
+        public bool Featured { get; set; }
 
-        public ccServer(string hash, string name, string players, string maxPlayers, string uptime, string software, string country_abbr) {
+        public ccServer(string hash, string name, string players, string maxPlayers, string uptime, string software, string country_abbr, bool featured) {
             Hash = hash;
             Name = name;
             Players = players;
@@ -219,6 +221,7 @@ namespace CCapi {
             Uptime = uptime;
             Software = software;
             Country = country_abbr;
+            Featured = featured;
         }
     }
     #endregion

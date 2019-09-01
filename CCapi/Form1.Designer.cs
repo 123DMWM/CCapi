@@ -372,7 +372,6 @@
             // 
             // tbFeatured
             // 
-            this.tbFeatured.Enabled = false;
             this.tbFeatured.Location = new System.Drawing.Point(391, 80);
             this.tbFeatured.Name = "tbFeatured";
             this.tbFeatured.ReadOnly = true;
@@ -382,7 +381,6 @@
             // lFeatured
             // 
             this.lFeatured.AutoSize = true;
-            this.lFeatured.Enabled = false;
             this.lFeatured.Location = new System.Drawing.Point(393, 64);
             this.lFeatured.Name = "lFeatured";
             this.lFeatured.Size = new System.Drawing.Size(52, 13);
