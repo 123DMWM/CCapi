@@ -195,6 +195,11 @@ namespace CCapi {
             System.Diagnostics.Process.Start("https://www.classicube.net/api/id/" + tbID.Text);
         }
 
+        private void bDownloadSkin_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.classicube.net/skins/" + tbUserName.Text + ".png");
+        }
+
         private void bRawServer_Click(object sender, EventArgs e) {
             System.Diagnostics.Process.Start("https://www.classicube.net/api/servers");
         }
