@@ -32,12 +32,11 @@ namespace CCapi {
             string name = tBSearch.Text;
             JsonObject result = null;
             string api;
-            
+
             if (function == 2) {
                 api = "id/";
-                int id;
-                if (!int.TryParse(name, out id)) {
-                    MessageBox.Show("That is not a valid ID!");
+                if (!int.TryParse(name, out _)) {
+                    MessageBox.Show("That is not a valid ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             } else {
@@ -51,7 +50,7 @@ namespace CCapi {
                     if (result == null) return;
                     
                     if (result.Get("error") == Constants.NotFound) {
-                        MessageBox.Show("No player found by that Name or ID!");
+                        MessageBox.Show("No player found by that username or ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     break;
@@ -64,7 +63,7 @@ namespace CCapi {
                     if (result == null) return;
                     
                     if (result.Get("error") == Constants.NotFound) {
-                        MessageBox.Show("No player found by that Name or ID!");
+                        MessageBox.Show("No player found by that username or ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     break;
@@ -87,20 +86,20 @@ namespace CCapi {
         
         JsonObject GetUserData(string apiPoint) {
             try {
-                string raw = new WebClient().DownloadString("http://www.classicube.net/api/" + apiPoint);
+                string raw = new WebClient().DownloadString("https://www.classicube.net/api/" + apiPoint);
                 return JsonObject.Parse(raw);
             } catch {
-                MessageBox.Show("ClassiCube.net might be down!");
+                MessageBox.Show("Failed to retrieve API data. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
             }
         }
         
         private Image getAvatar(string name) {
             try {
-                Stream stream = new WebClient().OpenRead("http://www.classicube.net/face/" + name);
+                Stream stream = new WebClient().OpenRead("https://www.classicube.net/face/" + name + ".png");
                 return Image.FromStream(stream);
             } catch {
-                MessageBox.Show("Failed to get skin. ClassiCube.net might be down!");
+                MessageBox.Show("Failed to retrieve skin. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
             }
         }
@@ -109,11 +108,11 @@ namespace CCapi {
             JsonObject result = null;
             Regex nan = new Regex("[^a-zA-Z0-9_.,]");
             try {
-                result = JsonObject.Parse((new WebClient()).DownloadString("http://www.classicube.net/api/players"));
+                result = JsonObject.Parse((new WebClient()).DownloadString("https://www.classicube.net/api/players"));
                 tbLast5.Text = nan.Replace(result.Get("lastfive"), "").Replace(",", Environment.NewLine);
                 tbTotal.Text = result.Get("playercount");
             } catch {
-                MessageBox.Show("ClassiCube.net might be down!");
+                MessageBox.Show("Failed to retrieve last five accounts. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }
@@ -148,7 +147,7 @@ namespace CCapi {
 
         public List<ccServer> GetPublicServers() {
             List<ccServer> servers = new List<ccServer>();
-            string response = new WebClient().DownloadString("http://www.classicube.net/api/servers");
+            string response = new WebClient().DownloadString("https://www.classicube.net/api/servers");
             int index = 0; bool success = true;
             Dictionary<string, object> root =
                 (Dictionary<string, object>)Json.ParseValue(response, ref index, ref success);
@@ -159,7 +158,8 @@ namespace CCapi {
                 servers.Add(new ccServer(
                     (string)pairs["hash"], (string)pairs["name"],
                     (string)pairs["players"], (string)pairs["maxplayers"],
-                    (string)pairs["uptime"], (string)pairs["software"]));
+                    (string)pairs["uptime"], (string)pairs["software"],
+                    (string)pairs["country_abbr"], (bool)pairs["featured"]));
             }
             return servers;
         }
@@ -169,6 +169,8 @@ namespace CCapi {
             tbUptime.Text = timeToString(TimeSpan.FromSeconds(double.Parse(servers[cbServer.SelectedIndex].Uptime)));
             tbSoftware.Text = servers[cbServer.SelectedIndex].Software;
             tbHash.Text = servers[cbServer.SelectedIndex].Hash;
+            tbCountry.Text = servers[cbServer.SelectedIndex].Country;
+            tbFeatured.Text = servers[cbServer.SelectedIndex].Featured.ToString();
             return;
         }
         private string timeToString(TimeSpan span) {
@@ -186,19 +188,24 @@ namespace CCapi {
         }
 
         private void bRawLast5_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("http://www.classicube.net/api/players");
+            System.Diagnostics.Process.Start("https://www.classicube.net/api/players");
         }
 
         private void bRawPlayer_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("http://www.classicube.net/api/id/" + tbID.Text);
+            System.Diagnostics.Process.Start("https://www.classicube.net/api/id/" + tbID.Text);
+        }
+
+        private void bDownloadSkin_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.classicube.net/skins/" + tbUserName.Text + ".png");
         }
 
         private void bRawServer_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("http://www.classicube.net/api/servers");
+            System.Diagnostics.Process.Start("https://www.classicube.net/api/servers");
         }
 
         private void bOpenHash_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("http://www.classicube.net/server/play/" + servers[cbServer.SelectedIndex].Hash);
+            System.Diagnostics.Process.Start("https://www.classicube.net/server/play/" + servers[cbServer.SelectedIndex].Hash);
         }
     }
     public class ccServer {
@@ -208,14 +215,18 @@ namespace CCapi {
         public string Players { get; set; }
         public string Software { get; set; }
         public string Uptime { get; set; }
+        public string Country { get; set; }
+        public bool Featured { get; set; }
 
-        public ccServer(string hash, string name, string players, string maxPlayers, string uptime, string software) {
+        public ccServer(string hash, string name, string players, string maxPlayers, string uptime, string software, string country_abbr, bool featured) {
             Hash = hash;
             Name = name;
             Players = players;
             MaximumPlayers = maxPlayers;
             Uptime = uptime;
             Software = software;
+            Country = country_abbr;
+            Featured = featured;
         }
     }
     #endregion
