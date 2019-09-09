@@ -23,6 +23,19 @@ namespace CCapi {
         private void bIDLookup_Click(object sender, EventArgs e) {
             getPlayer(2);
         }
+
+        private void bSkinDownload_Click(object sender, EventArgs e) {
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://classicube.net/skins/" + tbUserName.Text + ".png");
+            request.Method = "HEAD";
+            try {
+                request.GetResponse();
+                System.Diagnostics.Process.Start("https://classicube.net/skins/" + tbUserName.Text + ".png");
+            }
+            catch {
+                MessageBox.Show("This player has no custom skin!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
         private void tBSearch_Key(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
                 getPlayer(3);
@@ -82,6 +95,7 @@ namespace CCapi {
             }
             tbFlags.Text = flags.Remove(flags.Length - 2, 2);
             pictureBox1.Image = getAvatar(result.Get("username"));
+            bSkinDownload.Enabled = true;
         }
         
         JsonObject GetUserData(string apiPoint) {

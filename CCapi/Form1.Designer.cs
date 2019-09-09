@@ -135,6 +135,7 @@
             this.bSkinDownload.Text = "Download Skin";
             this.toolTip1.SetToolTip(this.bSkinDownload, "Download the selected user\'s skin.");
             this.bSkinDownload.UseVisualStyleBackColor = true;
+            this.bSkinDownload.Click += new System.EventHandler(this.bSkinDownload_Click);
             // 
             // pictureBox1
             // 
