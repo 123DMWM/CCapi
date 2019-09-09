@@ -140,6 +140,9 @@ namespace CCapi {
             txMaxPlayers.Text = "";
             tbUptime.Text = "";
             tbSoftware.Text = "";
+            tbFeatured.Text = "";
+            tbHash.Text = "";
+            tbCountry.Text = "";
             for (int i = 0; i < servers.Count; i++) {
                 cbServer.Items.Add(servers[i].Name);
             }
