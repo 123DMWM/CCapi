@@ -25,11 +25,11 @@ namespace CCapi {
         }
 
         private void bSkinDownload_Click(object sender, EventArgs e) {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://classicube.net/skins/" + tbUserName.Text + ".png");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://classicube.s3.amazonaws.com/skin/" + tbUserName.Text + ".png");
             request.Method = "HEAD";
             try {
                 request.GetResponse();
-                System.Diagnostics.Process.Start("https://classicube.net/skins/" + tbUserName.Text + ".png");
+                System.Diagnostics.Process.Start("https://classicube.s3.amazonaws.com/skin/" + tbUserName.Text + ".png");
             }
             catch {
                 MessageBox.Show("This player has no custom skin!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -110,7 +110,7 @@ namespace CCapi {
         
         private Image getAvatar(string name) {
             try {
-                Stream stream = new WebClient().OpenRead("https://www.classicube.net/face/" + name + ".png");
+                Stream stream = new WebClient().OpenRead("https://classicube.s3.amazonaws.com/face/" + name + ".png");
                 return Image.FromStream(stream);
             } catch {
                 MessageBox.Show("Failed to retrieve skin. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
