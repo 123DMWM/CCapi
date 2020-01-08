@@ -14,8 +14,10 @@ namespace CCapi {
         public Form1() {
             InitializeComponent();
             getLastFive();
+            setRegisteredDateTime(DateTime.Now);
         }
         #region Players
+        private DateTime userRegisteredDate = DateTime.Now;
         private void bLookup_Click(object sender, EventArgs e) {
             getPlayer(1);
         }
@@ -23,13 +25,18 @@ namespace CCapi {
         private void bIDLookup_Click(object sender, EventArgs e) {
             getPlayer(2);
         }
+        private void tBSearch_GotFocus(object sender, EventArgs e) {
+            if (tBSearch.Text == "Player Name/ID") {
+                tBSearch.Text = "";
+            }
+        }
 
         private void bSkinDownload_Click(object sender, EventArgs e) {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://classicube.net/skins/" + tbUserName.Text + ".png");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://classicube.s3.amazonaws.com/skins/" + tbUserName.Text + ".png");
             request.Method = "HEAD";
             try {
                 request.GetResponse();
-                System.Diagnostics.Process.Start("https://classicube.net/skins/" + tbUserName.Text + ".png");
+                System.Diagnostics.Process.Start("https://classicube.s3.amazonaws.com/skins/" + tbUserName.Text + ".png");
             }
             catch {
                 MessageBox.Show("This player has no custom skin!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -85,15 +92,18 @@ namespace CCapi {
             tbUserName.Text = result.Get("username");
             tbID.Text = result.Get("id");
             DateTime registered = Constants.Epoch.AddSeconds(double.Parse(result.Get("registered"))).ToLocalTime();
-            tbRegistered.Text = registered.ToLongDateString() + " at " + registered.ToLongTimeString();
+            userRegisteredDate = registered;
+            dtpRegistered.Enabled = true;
+            setRegisteredDateTime(registered);
+            tbForumTitle.Text = result.Get("forum_title");
             string flagsResult = result.Get("flags");
-            string flags = "ClassiCube User, ";
+            string flags = "";
             
             foreach (var kvp in Constants.UserFlags) {
                 if (flagsResult.IndexOf(kvp.Key) >= 0)
                     flags += kvp.Value + ", ";
             }
-            tbFlags.Text = flags.Remove(flags.Length - 2, 2);
+            tbFlags.Text = flags != "" ? flags.Remove(flags.Length - 2, 2) + " " + flagsResult : flags;
             pictureBox1.Image = getAvatar(result.Get("username"));
             bSkinDownload.Enabled = true;
         }
@@ -107,12 +117,39 @@ namespace CCapi {
                 return null;
             }
         }
-        
+        private void setRegisteredDateTime(DateTime date) {            
+            if (tbUserName.Text == "") date = DateTime.Now;
+            if (cbUTC.Checked) date = date.ToUniversalTime();
+            if (dtpRegistered.Value != date) {
+                if (dtpRegistered.Enabled) {
+                    dtpRegistered.MaxDate = cbUTC.Enabled ? DateTime.UtcNow : DateTime.Now;
+                    dtpRegistered.Value = date;
+                }
+                tbRegistered.Text = date.ToLongTimeString();
+            }
+        }
+        private void dtpRegistered_Changed(object sender, EventArgs e) {
+            setRegisteredDateTime(userRegisteredDate);
+        }
+        private void cbUTC_CheckedChanged(object sender, EventArgs e) {
+            setRegisteredDateTime(userRegisteredDate);
+        }
+
         private Image getAvatar(string name) {
             try {
-                Stream stream = new WebClient().OpenRead("https://www.classicube.net/face/" + name + ".png");
+                Stream stream = new WebClient().OpenRead("https://classicube.s3.amazonaws.com/face/" + name + ".png");
                 return Image.FromStream(stream);
             } catch {
+                MessageBox.Show("Failed to retrieve skin. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+        }
+        private Image getCountry(string name) {
+            try {
+                Stream stream = new WebClient().OpenRead("https://static.classicube.net/img/flags/" + name.ToLower() + ".png");
+                return Image.FromStream(stream);
+            }
+            catch {
                 MessageBox.Show("Failed to retrieve skin. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
             }
@@ -157,6 +194,7 @@ namespace CCapi {
             tbFeatured.Text = "";
             tbHash.Text = "";
             tbCountry.Text = "";
+            pbCountry.Image = null;
             for (int i = 0; i < servers.Count; i++) {
                 cbServer.Items.Add(servers[i].Name);
             }
@@ -187,6 +225,7 @@ namespace CCapi {
             tbSoftware.Text = servers[cbServer.SelectedIndex].Software;
             tbHash.Text = servers[cbServer.SelectedIndex].Hash;
             tbCountry.Text = servers[cbServer.SelectedIndex].Country;
+            pbCountry.Image = getCountry(servers[cbServer.SelectedIndex].Country);
             tbFeatured.Text = servers[cbServer.SelectedIndex].Featured.ToString();
             return;
         }
