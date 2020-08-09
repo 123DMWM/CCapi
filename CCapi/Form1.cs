@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Jason;
 using ServiceStack.Text;
@@ -13,18 +12,15 @@ namespace CCapi {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
-            getLastFive();
+            getOverallStats();
             setRegisteredDateTime(DateTime.Now);
         }
         #region Players
         private DateTime userRegisteredDate = DateTime.Now;
         private void bLookup_Click(object sender, EventArgs e) {
-            getPlayer(1);
+            getPlayer();
         }
 
-        private void bIDLookup_Click(object sender, EventArgs e) {
-            getPlayer(2);
-        }
         private void tBSearch_GotFocus(object sender, EventArgs e) {
             if (tBSearch.Text == "Player Name/ID") {
                 tBSearch.Text = "";
@@ -45,48 +41,19 @@ namespace CCapi {
         }
         private void tBSearch_Key(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
-                getPlayer(3);
+                getPlayer();
             }
         }
-        private void getPlayer(byte function) {
+        private void getPlayer() {
             string name = tBSearch.Text;
             JsonObject result = null;
-            string api;
 
-            if (function == 2) {
-                api = "id/";
-                if (!int.TryParse(name, out _)) {
-                    MessageBox.Show("That is not a valid ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            } else {
-                api = "player/";
-            }
-
-            switch (function) {
-                case 1:
-                case 2:
-                    result = GetUserData(api + name);
-                    if (result == null) return;
-                    
-                    if (result.Get("error") == Constants.NotFound) {
-                        MessageBox.Show("No player found by that username or ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    break;
-                case 3:
-                    result = GetUserData("player/" + name);
-                    if (result == null) return;
-                    if (result.Get("error") != Constants.NotFound) break;
-                    
-                    result = GetUserData("id/" + name);
-                    if (result == null) return;
-                    
-                    if (result.Get("error") == Constants.NotFound) {
-                        MessageBox.Show("No player found by that username or ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    break;
+            result = GetUserData("player/" + name);
+            if (result == null) return;
+            
+            if (result.Get("error") == Constants.NotFound) {
+                MessageBox.Show("No player found by that username!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             tbUserName.Text = result.Get("username");
@@ -155,12 +122,10 @@ namespace CCapi {
             }
         }
 
-        private void getLastFive() {
+        private void getOverallStats() {
             JsonObject result = null;
-            Regex nan = new Regex("[^a-zA-Z0-9_.,]");
             try {
                 result = JsonObject.Parse((new WebClient()).DownloadString("https://www.classicube.net/api/players"));
-                tbLast5.Text = nan.Replace(result.Get("lastfive"), "").Replace(",", Environment.NewLine);
                 tbTotal.Text = result.Get("playercount");
             } catch {
                 MessageBox.Show("Failed to retrieve last five accounts. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -168,7 +133,7 @@ namespace CCapi {
             }
         }
         private void bRefreshLast5_Click(object sender, EventArgs e) {
-            getLastFive();
+            getOverallStats();
         }
         #endregion
         #region Servers
@@ -248,7 +213,7 @@ namespace CCapi {
         }
 
         private void bRawPlayer_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("https://www.classicube.net/api/id/" + tbID.Text);
+            System.Diagnostics.Process.Start("https://www.classicube.net/api/player/" + tBSearch.Text);
         }
 
         private void bDownloadSkin_Click(object sender, EventArgs e)

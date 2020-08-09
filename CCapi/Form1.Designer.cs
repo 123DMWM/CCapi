@@ -31,13 +31,13 @@
             this.bSkinDownload = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbRegistered = new System.Windows.Forms.TextBox();
             this.cbUTC = new System.Windows.Forms.CheckBox();
             this.dtpRegistered = new System.Windows.Forms.DateTimePicker();
+            this.bRawPlayer = new System.Windows.Forms.Button();
             this.lRegistered = new System.Windows.Forms.Label();
             this.lID = new System.Windows.Forms.Label();
-            this.bRawPlayer = new System.Windows.Forms.Button();
             this.lUserName = new System.Windows.Forms.Label();
-            this.bIDLookup = new System.Windows.Forms.Button();
             this.tbUserName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
             this.bLookup = new System.Windows.Forms.Button();
@@ -54,6 +54,7 @@
             this.bRefreshLast5 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.pbCountry = new System.Windows.Forms.PictureBox();
             this.tbFeatured = new System.Windows.Forms.TextBox();
             this.lFeatured = new System.Windows.Forms.Label();
             this.tbCountry = new System.Windows.Forms.TextBox();
@@ -75,8 +76,6 @@
             this.txMaxPlayers = new System.Windows.Forms.TextBox();
             this.lServer = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.tbRegistered = new System.Windows.Forms.TextBox();
-            this.pbCountry = new System.Windows.Forms.PictureBox();
             this.tabs.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -86,8 +85,8 @@
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCountry)).BeginInit();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
@@ -156,7 +155,6 @@
             this.groupBox3.Controls.Add(this.lRegistered);
             this.groupBox3.Controls.Add(this.lID);
             this.groupBox3.Controls.Add(this.lUserName);
-            this.groupBox3.Controls.Add(this.bIDLookup);
             this.groupBox3.Controls.Add(this.tbUserName);
             this.groupBox3.Controls.Add(this.tbID);
             this.groupBox3.Controls.Add(this.bLookup);
@@ -167,6 +165,15 @@
             this.groupBox3.TabIndex = 25;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Account Info";
+            // 
+            // tbRegistered
+            // 
+            this.tbRegistered.Location = new System.Drawing.Point(130, 123);
+            this.tbRegistered.Name = "tbRegistered";
+            this.tbRegistered.ReadOnly = true;
+            this.tbRegistered.Size = new System.Drawing.Size(88, 20);
+            this.tbRegistered.TabIndex = 36;
+            this.tbRegistered.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cbUTC
             // 
@@ -193,6 +200,17 @@
             this.dtpRegistered.Value = new System.DateTime(2020, 1, 8, 0, 0, 0, 0);
             this.dtpRegistered.ValueChanged += new System.EventHandler(this.dtpRegistered_Changed);
             // 
+            // bRawPlayer
+            // 
+            this.bRawPlayer.Location = new System.Drawing.Point(178, 149);
+            this.bRawPlayer.Name = "bRawPlayer";
+            this.bRawPlayer.Size = new System.Drawing.Size(40, 20);
+            this.bRawPlayer.TabIndex = 32;
+            this.bRawPlayer.Text = "Raw";
+            this.toolTip1.SetToolTip(this.bRawPlayer, "Open the account\'s info in raw JSON.");
+            this.bRawPlayer.UseVisualStyleBackColor = true;
+            this.bRawPlayer.Click += new System.EventHandler(this.bRawPlayer_Click);
+            // 
             // lRegistered
             // 
             this.lRegistered.AutoSize = true;
@@ -211,17 +229,6 @@
             this.lID.TabIndex = 30;
             this.lID.Text = "ID:";
             // 
-            // bRawPlayer
-            // 
-            this.bRawPlayer.Location = new System.Drawing.Point(178, 149);
-            this.bRawPlayer.Name = "bRawPlayer";
-            this.bRawPlayer.Size = new System.Drawing.Size(40, 20);
-            this.bRawPlayer.TabIndex = 32;
-            this.bRawPlayer.Text = "Raw";
-            this.toolTip1.SetToolTip(this.bRawPlayer, "Open the account\'s info in raw JSON.");
-            this.bRawPlayer.UseVisualStyleBackColor = true;
-            this.bRawPlayer.Click += new System.EventHandler(this.bRawPlayer_Click);
-            // 
             // lUserName
             // 
             this.lUserName.AutoSize = true;
@@ -230,17 +237,6 @@
             this.lUserName.Size = new System.Drawing.Size(58, 13);
             this.lUserName.TabIndex = 29;
             this.lUserName.Text = "Username:";
-            // 
-            // bIDLookup
-            // 
-            this.bIDLookup.Location = new System.Drawing.Point(190, 20);
-            this.bIDLookup.Name = "bIDLookup";
-            this.bIDLookup.Size = new System.Drawing.Size(29, 23);
-            this.bIDLookup.TabIndex = 28;
-            this.bIDLookup.Text = "ID";
-            this.toolTip1.SetToolTip(this.bIDLookup, "Perform a lookup with a user\'s ID.");
-            this.bIDLookup.UseVisualStyleBackColor = true;
-            this.bIDLookup.Click += new System.EventHandler(this.bIDLookup_Click);
             // 
             // tbUserName
             // 
@@ -415,6 +411,15 @@
             this.groupBox6.TabIndex = 28;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Server Info";
+            // 
+            // pbCountry
+            // 
+            this.pbCountry.Location = new System.Drawing.Point(445, 30);
+            this.pbCountry.Name = "pbCountry";
+            this.pbCountry.Size = new System.Drawing.Size(32, 22);
+            this.pbCountry.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbCountry.TabIndex = 31;
+            this.pbCountry.TabStop = false;
             // 
             // tbFeatured
             // 
@@ -605,24 +610,6 @@
             this.lServer.TabIndex = 15;
             this.lServer.Text = "Selected Server:";
             // 
-            // tbRegistered
-            // 
-            this.tbRegistered.Location = new System.Drawing.Point(130, 123);
-            this.tbRegistered.Name = "tbRegistered";
-            this.tbRegistered.ReadOnly = true;
-            this.tbRegistered.Size = new System.Drawing.Size(88, 20);
-            this.tbRegistered.TabIndex = 36;
-            this.tbRegistered.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // pbCountry
-            // 
-            this.pbCountry.Location = new System.Drawing.Point(445, 30);
-            this.pbCountry.Name = "pbCountry";
-            this.pbCountry.Size = new System.Drawing.Size(32, 22);
-            this.pbCountry.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbCountry.TabIndex = 31;
-            this.pbCountry.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -648,9 +635,9 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCountry)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCountry)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -689,7 +676,6 @@
         private System.Windows.Forms.Label lRegistered;
         private System.Windows.Forms.Label lID;
         private System.Windows.Forms.Label lUserName;
-        private System.Windows.Forms.Button bIDLookup;
         private System.Windows.Forms.TextBox tbUserName;
         private System.Windows.Forms.TextBox tbID;
         private System.Windows.Forms.Button bLookup;
