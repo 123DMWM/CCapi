@@ -48,12 +48,13 @@
             this.tbFlags = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bRawLast5 = new System.Windows.Forms.Button();
-            this.tbLast5 = new System.Windows.Forms.TextBox();
             this.lTotal = new System.Windows.Forms.Label();
             this.tbTotal = new System.Windows.Forms.TextBox();
             this.bRefreshLast5 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.tbWebSupport = new System.Windows.Forms.TextBox();
+            this.lWeb = new System.Windows.Forms.Label();
             this.pbCountry = new System.Windows.Forms.PictureBox();
             this.tbFeatured = new System.Windows.Forms.TextBox();
             this.lFeatured = new System.Windows.Forms.Label();
@@ -180,22 +181,22 @@
             this.cbUTC.AutoSize = true;
             this.cbUTC.Checked = true;
             this.cbUTC.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbUTC.Location = new System.Drawing.Point(76, 125);
+            this.cbUTC.Location = new System.Drawing.Point(47, 125);
             this.cbUTC.Name = "cbUTC";
-            this.cbUTC.Size = new System.Drawing.Size(48, 17);
+            this.cbUTC.Size = new System.Drawing.Size(85, 17);
             this.cbUTC.TabIndex = 35;
-            this.cbUTC.Text = "UTC";
+            this.cbUTC.Text = "View in UTC";
+            this.toolTip1.SetToolTip(this.cbUTC, "Toggle to view registration date and time in UTC or local time.");
             this.cbUTC.UseVisualStyleBackColor = true;
             this.cbUTC.CheckedChanged += new System.EventHandler(this.cbUTC_CheckedChanged);
             // 
             // dtpRegistered
             // 
             this.dtpRegistered.CustomFormat = "dddd MMMM d, yyyy  h:mm:ss tt";
-            this.dtpRegistered.Enabled = false;
             this.dtpRegistered.Location = new System.Drawing.Point(6, 99);
             this.dtpRegistered.MinDate = new System.DateTime(2013, 8, 13, 0, 0, 0, 0);
             this.dtpRegistered.Name = "dtpRegistered";
-            this.dtpRegistered.Size = new System.Drawing.Size(213, 20);
+            this.dtpRegistered.Size = new System.Drawing.Size(212, 20);
             this.dtpRegistered.TabIndex = 32;
             this.dtpRegistered.Value = new System.DateTime(2020, 1, 8, 0, 0, 0, 0);
             this.dtpRegistered.ValueChanged += new System.EventHandler(this.dtpRegistered_Changed);
@@ -223,7 +224,7 @@
             // lID
             // 
             this.lID.AutoSize = true;
-            this.lID.Location = new System.Drawing.Point(162, 44);
+            this.lID.Location = new System.Drawing.Point(163, 44);
             this.lID.Name = "lID";
             this.lID.Size = new System.Drawing.Size(21, 13);
             this.lID.TabIndex = 30;
@@ -256,7 +257,7 @@
             // 
             // bLookup
             // 
-            this.bLookup.Location = new System.Drawing.Point(130, 20);
+            this.bLookup.Location = new System.Drawing.Point(164, 20);
             this.bLookup.Name = "bLookup";
             this.bLookup.Size = new System.Drawing.Size(54, 23);
             this.bLookup.TabIndex = 24;
@@ -269,9 +270,9 @@
             // 
             this.tBSearch.Location = new System.Drawing.Point(6, 21);
             this.tBSearch.Name = "tBSearch";
-            this.tBSearch.Size = new System.Drawing.Size(118, 20);
+            this.tBSearch.Size = new System.Drawing.Size(153, 20);
             this.tBSearch.TabIndex = 23;
-            this.tBSearch.Text = "Player Name/ID";
+            this.tBSearch.Text = "Player Name";
             this.tBSearch.GotFocus += new System.EventHandler(this.tBSearch_GotFocus);
             // 
             // groupBox2
@@ -288,11 +289,11 @@
             // 
             // tbForumTitle
             // 
-            this.tbForumTitle.Location = new System.Drawing.Point(74, 43);
+            this.tbForumTitle.Location = new System.Drawing.Point(66, 43);
             this.tbForumTitle.Multiline = true;
             this.tbForumTitle.Name = "tbForumTitle";
             this.tbForumTitle.ReadOnly = true;
-            this.tbForumTitle.Size = new System.Drawing.Size(494, 20);
+            this.tbForumTitle.Size = new System.Drawing.Size(502, 20);
             this.tbForumTitle.TabIndex = 33;
             // 
             // lForumTitle
@@ -316,7 +317,6 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.bRawLast5);
-            this.groupBox1.Controls.Add(this.tbLast5);
             this.groupBox1.Controls.Add(this.lTotal);
             this.groupBox1.Controls.Add(this.tbTotal);
             this.groupBox1.Controls.Add(this.bRefreshLast5);
@@ -325,42 +325,32 @@
             this.groupBox1.Size = new System.Drawing.Size(203, 175);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Last Five Accounts";
+            this.groupBox1.Text = "ClassiCube Stats";
             // 
             // bRawLast5
             // 
-            this.bRawLast5.Location = new System.Drawing.Point(6, 21);
+            this.bRawLast5.Location = new System.Drawing.Point(160, 147);
             this.bRawLast5.Margin = new System.Windows.Forms.Padding(2);
             this.bRawLast5.Name = "bRawLast5";
             this.bRawLast5.Size = new System.Drawing.Size(37, 23);
             this.bRawLast5.TabIndex = 23;
             this.bRawLast5.Text = "Raw";
-            this.toolTip1.SetToolTip(this.bRawLast5, "Open the last five accounts in raw JSON.");
+            this.toolTip1.SetToolTip(this.bRawLast5, "Open ClassiCube\'s statistics in raw JSON.");
             this.bRawLast5.UseVisualStyleBackColor = true;
             this.bRawLast5.Click += new System.EventHandler(this.bRawLast5_Click);
-            // 
-            // tbLast5
-            // 
-            this.tbLast5.Location = new System.Drawing.Point(6, 48);
-            this.tbLast5.Multiline = true;
-            this.tbLast5.Name = "tbLast5";
-            this.tbLast5.ReadOnly = true;
-            this.tbLast5.Size = new System.Drawing.Size(191, 76);
-            this.tbLast5.TabIndex = 2;
-            this.tbLast5.Text = "1\r\n2\r\n3\r\n4\r\n5";
             // 
             // lTotal
             // 
             this.lTotal.AutoSize = true;
-            this.lTotal.Location = new System.Drawing.Point(10, 143);
+            this.lTotal.Location = new System.Drawing.Point(12, 69);
             this.lTotal.Name = "lTotal";
-            this.lTotal.Size = new System.Drawing.Size(82, 13);
+            this.lTotal.Size = new System.Drawing.Size(136, 13);
             this.lTotal.TabIndex = 6;
-            this.lTotal.Text = "Total Accounts:";
+            this.lTotal.Text = "Total Accounts Registered:";
             // 
             // tbTotal
             // 
-            this.tbTotal.Location = new System.Drawing.Point(102, 139);
+            this.tbTotal.Location = new System.Drawing.Point(13, 86);
             this.tbTotal.Name = "tbTotal";
             this.tbTotal.ReadOnly = true;
             this.tbTotal.Size = new System.Drawing.Size(94, 20);
@@ -373,7 +363,7 @@
             this.bRefreshLast5.Size = new System.Drawing.Size(68, 23);
             this.bRefreshLast5.TabIndex = 4;
             this.bRefreshLast5.Text = "Refresh";
-            this.toolTip1.SetToolTip(this.bRefreshLast5, "Refresh the last five accounts list.");
+            this.toolTip1.SetToolTip(this.bRefreshLast5, "Update ClassiCube\'s statistics.");
             this.bRefreshLast5.UseVisualStyleBackColor = true;
             this.bRefreshLast5.Click += new System.EventHandler(this.bRefreshLast5_Click);
             // 
@@ -391,6 +381,8 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.tbWebSupport);
+            this.groupBox6.Controls.Add(this.lWeb);
             this.groupBox6.Controls.Add(this.pbCountry);
             this.groupBox6.Controls.Add(this.tbFeatured);
             this.groupBox6.Controls.Add(this.lFeatured);
@@ -410,11 +402,28 @@
             this.groupBox6.Size = new System.Drawing.Size(574, 176);
             this.groupBox6.TabIndex = 28;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Server Info";
+            this.groupBox6.Text = "Server Detail";
+            // 
+            // tbWebSupport
+            // 
+            this.tbWebSupport.Location = new System.Drawing.Point(441, 80);
+            this.tbWebSupport.Name = "tbWebSupport";
+            this.tbWebSupport.ReadOnly = true;
+            this.tbWebSupport.Size = new System.Drawing.Size(54, 20);
+            this.tbWebSupport.TabIndex = 33;
+            // 
+            // lWeb
+            // 
+            this.lWeb.AutoSize = true;
+            this.lWeb.Location = new System.Drawing.Point(443, 64);
+            this.lWeb.Name = "lWeb";
+            this.lWeb.Size = new System.Drawing.Size(33, 13);
+            this.lWeb.TabIndex = 32;
+            this.lWeb.Text = "Web:";
             // 
             // pbCountry
             // 
-            this.pbCountry.Location = new System.Drawing.Point(445, 30);
+            this.pbCountry.Location = new System.Drawing.Point(431, 30);
             this.pbCountry.Name = "pbCountry";
             this.pbCountry.Size = new System.Drawing.Size(32, 22);
             this.pbCountry.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -423,16 +432,16 @@
             // 
             // tbFeatured
             // 
-            this.tbFeatured.Location = new System.Drawing.Point(391, 80);
+            this.tbFeatured.Location = new System.Drawing.Point(377, 80);
             this.tbFeatured.Name = "tbFeatured";
             this.tbFeatured.ReadOnly = true;
-            this.tbFeatured.Size = new System.Drawing.Size(72, 20);
+            this.tbFeatured.Size = new System.Drawing.Size(54, 20);
             this.tbFeatured.TabIndex = 30;
             // 
             // lFeatured
             // 
             this.lFeatured.AutoSize = true;
-            this.lFeatured.Location = new System.Drawing.Point(393, 64);
+            this.lFeatured.Location = new System.Drawing.Point(379, 64);
             this.lFeatured.Name = "lFeatured";
             this.lFeatured.Size = new System.Drawing.Size(52, 13);
             this.lFeatured.TabIndex = 29;
@@ -440,7 +449,7 @@
             // 
             // tbCountry
             // 
-            this.tbCountry.Location = new System.Drawing.Point(391, 32);
+            this.tbCountry.Location = new System.Drawing.Point(377, 32);
             this.tbCountry.Name = "tbCountry";
             this.tbCountry.ReadOnly = true;
             this.tbCountry.Size = new System.Drawing.Size(48, 20);
@@ -449,7 +458,7 @@
             // lCountry
             // 
             this.lCountry.AutoSize = true;
-            this.lCountry.Location = new System.Drawing.Point(393, 16);
+            this.lCountry.Location = new System.Drawing.Point(379, 16);
             this.lCountry.Name = "lCountry";
             this.lCountry.Size = new System.Drawing.Size(46, 13);
             this.lCountry.TabIndex = 27;
@@ -485,7 +494,7 @@
             // 
             // bRawServer
             // 
-            this.bRawServer.Location = new System.Drawing.Point(506, 64);
+            this.bRawServer.Location = new System.Drawing.Point(506, 148);
             this.bRawServer.Margin = new System.Windows.Forms.Padding(2);
             this.bRawServer.Name = "bRawServer";
             this.bRawServer.Size = new System.Drawing.Size(62, 23);
@@ -497,7 +506,7 @@
             // 
             // bOpenHash
             // 
-            this.bOpenHash.Location = new System.Drawing.Point(506, 125);
+            this.bOpenHash.Location = new System.Drawing.Point(506, 78);
             this.bOpenHash.Margin = new System.Windows.Forms.Padding(2);
             this.bOpenHash.Name = "bOpenHash";
             this.bOpenHash.Size = new System.Drawing.Size(62, 23);
@@ -648,7 +657,6 @@
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.TextBox tbLast5;
 		private System.Windows.Forms.TextBox tbTotal;
 		private System.Windows.Forms.TextBox tbSoftware;
 		private System.Windows.Forms.TextBox tbUptime;
@@ -695,6 +703,8 @@
         private System.Windows.Forms.CheckBox cbUTC;
         private System.Windows.Forms.TextBox tbRegistered;
         private System.Windows.Forms.PictureBox pbCountry;
+        private System.Windows.Forms.TextBox tbWebSupport;
+        private System.Windows.Forms.Label lWeb;
     }
 }
 
