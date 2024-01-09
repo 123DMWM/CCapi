@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 using Jason;
 using ServiceStack.Text;
 
@@ -22,17 +23,17 @@ namespace CCapi {
         }
 
         private void tBSearch_GotFocus(object sender, EventArgs e) {
-            if (tBSearch.Text == "Player Name/ID") {
+            if (tBSearch.Text == "Player Name") {
                 tBSearch.Text = "";
             }
         }
 
         private void bSkinDownload_Click(object sender, EventArgs e) {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://classicube.s3.amazonaws.com/skins/" + tbUserName.Text + ".png");
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://cdn.classicube.net/skin/" + tbUserName.Text + ".png");
             request.Method = "HEAD";
             try {
                 request.GetResponse();
-                System.Diagnostics.Process.Start("https://classicube.s3.amazonaws.com/skins/" + tbUserName.Text + ".png");
+                System.Diagnostics.Process.Start("https://cdn.classicube.net/skin/" + tbUserName.Text + ".png");
             }
             catch {
                 MessageBox.Show("This player has no custom skin!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -104,7 +105,7 @@ namespace CCapi {
 
         private Image getAvatar(string name) {
             try {
-                Stream stream = new WebClient().OpenRead("https://classicube.s3.amazonaws.com/face/" + name + ".png");
+                Stream stream = new WebClient().OpenRead("https://cdn.classicube.net/face/" + name + ".png");
                 return Image.FromStream(stream);
             } catch {
                 MessageBox.Show("Failed to retrieve skin. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -117,7 +118,7 @@ namespace CCapi {
                 return Image.FromStream(stream);
             }
             catch {
-                MessageBox.Show("Failed to retrieve skin. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Failed to retrieve assets. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
             }
         }
@@ -128,7 +129,7 @@ namespace CCapi {
                 result = JsonObject.Parse((new WebClient()).DownloadString("https://www.classicube.net/api/players"));
                 tbTotal.Text = result.Get("playercount");
             } catch {
-                MessageBox.Show("Failed to retrieve last five accounts. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Failed to retrieve stats. ClassiCube.net might be down!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }
@@ -157,6 +158,7 @@ namespace CCapi {
             tbUptime.Text = "";
             tbSoftware.Text = "";
             tbFeatured.Text = "";
+            tbWebSupport.Text = "";
             tbHash.Text = "";
             tbCountry.Text = "";
             pbCountry.Image = null;
@@ -179,7 +181,8 @@ namespace CCapi {
                     (string)pairs["hash"], (string)pairs["name"],
                     (string)pairs["players"], (string)pairs["maxplayers"],
                     (string)pairs["uptime"], (string)pairs["software"],
-                    (string)pairs["country_abbr"], (bool)pairs["featured"]));
+                    (string)pairs["country_abbr"], (bool)pairs["featured"],
+                    (bool)pairs["web"]));
             }
             return servers;
         }
@@ -187,24 +190,25 @@ namespace CCapi {
             tbPlayers.Text = servers[cbServer.SelectedIndex].Players;
             txMaxPlayers.Text = servers[cbServer.SelectedIndex].MaximumPlayers;
             tbUptime.Text = timeToString(TimeSpan.FromSeconds(double.Parse(servers[cbServer.SelectedIndex].Uptime)));
-            tbSoftware.Text = servers[cbServer.SelectedIndex].Software;
+            tbSoftware.Text = Regex.Replace(servers[cbServer.SelectedIndex].Software, @"(?i)[&][0-9A-F]", "");
             tbHash.Text = servers[cbServer.SelectedIndex].Hash;
             tbCountry.Text = servers[cbServer.SelectedIndex].Country;
             pbCountry.Image = getCountry(servers[cbServer.SelectedIndex].Country);
             tbFeatured.Text = servers[cbServer.SelectedIndex].Featured.ToString();
+            tbWebSupport.Text = servers[cbServer.SelectedIndex].WebSupport.ToString();
             return;
         }
         private string timeToString(TimeSpan span) {
             if (span.TotalSeconds < 60) {
                 return String.Format("{0} seconds", span.Seconds);
             } else if (span.TotalMinutes < 60) {
-                return String.Format("{0} minutes {1} seconds", span.Minutes, span.Seconds);
+                return String.Format("{0} minutes, {1} seconds", span.Minutes, span.Seconds);
             } else if (span.TotalHours < 48) {
-                return String.Format("{0} hours {1} minutes", (int)Math.Floor(span.TotalHours), span.Minutes);
+                return String.Format("{0} hours, {1} minutes", (int)Math.Floor(span.TotalHours), span.Minutes);
             } else if (span.TotalDays < 15) {
-                return String.Format("{0} days {1} hours", span.Days, span.Hours);
+                return String.Format("{0} days, {1} hours", span.Days, span.Hours);
             } else {
-                return String.Format("{0:0} weeks {1:0} days", Math.Floor(span.TotalDays / 7), Math.Floor(span.TotalDays) % 7);
+                return String.Format("{0:0} weeks, {1:0} days", Math.Floor(span.TotalDays / 7), Math.Floor(span.TotalDays) % 7);
             }
         }
 
@@ -218,7 +222,7 @@ namespace CCapi {
 
         private void bDownloadSkin_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.classicube.net/skins/" + tbUserName.Text + ".png");
+            System.Diagnostics.Process.Start("https://www.classicube.net/skin/" + tbUserName.Text + ".png");
         }
 
         private void bRawServer_Click(object sender, EventArgs e) {
@@ -226,8 +230,18 @@ namespace CCapi {
         }
 
         private void bOpenHash_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("https://www.classicube.net/server/play/" + servers[cbServer.SelectedIndex].Hash);
+            try
+            {
+                System.Diagnostics.Process.Start("https://www.classicube.net/server/play/" + servers[cbServer.SelectedIndex].Hash);
+            }
+            catch
+            {
+                MessageBox.Show("Select a server first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
+
+
     }
     public class ccServer {
         public string Hash { get; set; }
@@ -238,8 +252,9 @@ namespace CCapi {
         public string Uptime { get; set; }
         public string Country { get; set; }
         public bool Featured { get; set; }
+        public bool WebSupport { get; set; }
 
-        public ccServer(string hash, string name, string players, string maxPlayers, string uptime, string software, string country_abbr, bool featured) {
+        public ccServer(string hash, string name, string players, string maxPlayers, string uptime, string software, string country_abbr, bool featured, bool web) {
             Hash = hash;
             Name = name;
             Players = players;
@@ -248,6 +263,7 @@ namespace CCapi {
             Software = software;
             Country = country_abbr;
             Featured = featured;
+            WebSupport = web;
         }
     }
     #endregion
